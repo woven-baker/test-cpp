@@ -1,0 +1,16 @@
+# Project Day Schedule
+- Greetings (5m, 10:00 - 10:05)
+- Project Introduction (10m, 10:05 - 10:15)
+  - Overview of requirements
+  - Overview of levels
+  - Demo of working program (no internals)
+- Form scrum teams (15m, 10:15 - 10:30)
+  - Set up team git repository
+- Planning stage (1h, 10:30 - 11:30)
+- Development (1h, 11:30 - 12:30)
+- Lunch (1h, 12:30 - 13:30)
+- Development (4h, 13:30 - 17:30)
+- Demonstrate to instructors (30m, 17:30 - 18:00)
+- Submission
+  - By end of day, create demo video showcasing program and include in project repository
+  - Make a pull request to main repository
