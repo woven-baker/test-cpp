@@ -207,6 +207,9 @@ int main() {
 }
 ```
 
+```
+```
+
 ---
 
 ```
@@ -215,3 +218,50 @@ The GasStation class depends on the Car class to perform the fill_up function.
 
 ## Exercise 2
 
+What type of relationship do the `Person` and `Pet` classes below have?
+
+```cpp
+#include <string>
+#include <vector>
+
+class Pet {
+public:
+    Pet(const std::string& name) : name(name) {}
+
+private:
+    std::string name;
+};
+
+class Person {
+public:
+    Person(const std::string& name) : name(name) {}
+
+    void adopt_pet(std::shared_ptr<Pet> pet) {
+        pets.push_back(pet);
+    }
+
+private:
+    std::string name;
+    std::vector<std::shared_ptr<Pet>> pets;
+};
+
+int main() {
+    Person person{ "Alice" };
+    auto pet1 = std::make_shared<Pet>("Fluffy");
+    auto pet2 = std::make_shared<Pet>("Spot");
+
+    person.adopt_pet(pet1);
+    person.adopt_pet(pet2);
+
+    // ...
+}
+```
+
+```
+```
+
+---
+
+```
+Association
+```
