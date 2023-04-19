@@ -180,6 +180,7 @@ And the following language features could be used, but only after careful consid
 - [`std::string`](https://en.cppreference.com/w/cpp/string/basic_string)
 - [`std::vector`](https://en.cppreference.com/w/cpp/container/vector)
 - [`std::function`](https://en.cppreference.com/w/cpp/utility/functional/function)
+- Type Erasure
 
 # Exercises
 ## Exercise 1
