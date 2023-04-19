@@ -1,7 +1,7 @@
 # Challenges
 
 ## Challenge 1
-Create a function template called print_elements that accepts a standard library container (like std::vector, std::list, or std::deque) and prints its elements. Test your function with at least two different types of containers.
+Create a function template called print_elements that accepts a standard library container (like `std::vector`, `std::list`, or `std::deque`) and prints its elements. Test your function with at least two different types of containers.
 
 ```
 ```
@@ -33,7 +33,13 @@ int main() {
 ```
 
 ## Challenge 2
-Create a class template called Stack that mimics the behavior of a stack. This class should have the following member functions: push(), pop(), top(), and is_empty(). Use a standard library container (e.g., std::vector, std::list, or std::deque) as the underlying data structure for the stack. Test your class with at least two different types of containers.
+Create a class template called `Stack` that mimics the behavior of a stack. This class should have the following member functions:
+- `void push(const T& value)`, which pushes a value onto the stack.
+- `void pop()`, which pops the top value off the stack.
+- `T top() const`, which returns the value on the top of the stack.
+- `bool is_empty() const`, which returns if the stack is empty.
+
+Use a standard library container (e.g., `std::vector`, `std::list`, or `std::deque`) as the underlying data structure for the stack. Test your class with at least two different types of containers.
 
 ```
 ```
@@ -94,7 +100,7 @@ int main() {
 ```
 
 ## Challenge 3
-Compare the performance of std::vector, std::list, and std::deque when used as the underlying data structure for a stack. Write a small program that performs a series of push and pop operations on a stack, then time the execution for each container type. Determine which container is the best choice for this application and explain your choice.
+Compare the performance of `std::vector`, `std::list`, and `std::deque` when used as the underlying data structure for a stack. Write a small program that performs a series of push and pop operations on a stack, then time the execution for each container type. Determine which container is the best choice for this application and explain your choice. Make sure to compile with -O0 so the compiler doesn't optimize away your code and result in useless benchmarks.
 
 ```
 ```
@@ -168,14 +174,14 @@ int main() {
 ```
 
 ## Challenge 4
-Design a program that reads a text file containing a list of names and phone numbers. The program should store the names and phone numbers in a std::map container. Implement the following features:
+Design a program that reads a text file containing a list of names and phone numbers. The program should store the names and phone numbers in a `std::map` container. Implement the following features:
 
 - Add a name and phone number to the map.
 - Remove a name and its associated phone number from the map.
 - Search for a phone number based on a given name.
 - Display all names and phone numbers in alphabetical order.
 
-In this challenge, you will need to research and understand how to use std::map and its associated functions. Also, you'll need to implement input validation and error handling to ensure the program works as expected.
+In this challenge, you will need to research and understand how to use `std::map` and its associated functions. Also, you'll need to implement input validation and error handling to ensure the program works as expected.
 
 ```
 ```
