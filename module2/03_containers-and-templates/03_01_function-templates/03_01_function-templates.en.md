@@ -63,7 +63,7 @@ T add(T a, T b) {
 }
 ```
 
-Template heads are declared using the `template` keyword followed by a set of angle brackets `<>` containing one or more parameters. In this example, `T` is a template type parameter that represents a data type. The `typename` keyword is used here to indicate that T is a type. There are also template [non-type parameters and template template parameters](https://en.cppreference.com/w/cpp/language/template_parameters).
+Template heads are declared using the `template` keyword followed by a set of angle brackets `<>` containing one or more parameters. In this example, `T` is a template type parameter that represents a data type. The `typename` keyword is used here to indicate that T is a type. There are also [template non-type parameters and template template parameters](https://en.cppreference.com/w/cpp/language/template_parameters).
 
 The last step is specifying the template parameter type when you call the function:
 
@@ -106,7 +106,8 @@ int main() {
 }
 ```
 
-We can call function templates in the same way you would normal functions:
+## Template argument deduction
+Thanks to *[template argument deduction](https://en.cppreference.com/w/cpp/language/template_argument_deduction)*, when possible, the compiler can deduce on its own what types we are passing to a template. Because of this, we can often call function templates in the same way you would normal functions:
 
 ```cpp
 template<typename T>
@@ -144,7 +145,7 @@ int main() {
 
 Our function template for add simply concatenated the two strings together, which is exactly what we would expect from the + operator. However, what if we wanted to include a space between the two words instead?
 
-To accomplish this, we can go ahead and define a `template specialization` of the add function, where we leave the template parameter declaration empty and specify the types explicitly:
+To accomplish this, we can go ahead and define a *template specialization* of the add function, where we leave the template parameter declaration empty and specify the types explicitly:
 
 ```cpp
 template <>
