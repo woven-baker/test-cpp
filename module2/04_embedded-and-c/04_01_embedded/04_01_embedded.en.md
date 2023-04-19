@@ -62,7 +62,7 @@ In what ways are each of these three embedded systems constrained?
 C++ offers several features that can help you write efficient and maintainable embedded code. However, some features may not be suitable for all embedded systems due to resource constraints. Here are some key considerations for using C++ in embedded systems:
 
 ### **Static vs dynamic memory allocation**
-In embedded systems, it is often preferable to use static memory allocation instead of dynamic memory allocation, where possible. Dynamic memory allocation (using `new` and `delete` or `malloc` and `free`) can lead to memory fragmentation and unpredictable behavior, which can be problematic in resource-constrained environments. Prefer using C++ containers like `std::array` over `std::vector` when possible, unless you are using custom memory allocators that replace dynamic memory allocation.
+In embedded systems, it is often preferable to use static memory allocation instead of dynamic memory allocation, where possible. Dynamic memory allocation (using `new` and `delete` or `malloc` and `free`) can lead to memory fragmentation and unpredictable behavior, which can be problematic in resource-constrained environments. Prefer using C++ containers like `std::vector` with custom memory allocators through [std::allocator](https://en.cppreference.com/w/cpp/memory/allocator) or [std::pmr::](https://en.cppreference.com/w/cpp/memory/polymorphic_allocator) where possible. Otherwise, use containers that don't dynamically allocate memory, like `std::array`, instead of using C-style arrays.
 
 To illustrate the potential harm of dynamic memory allocation, let's take a look at the following code, which allocates `num_allocations` random amounts of memory on the heap using `malloc`, then deallocates half of it at random using `free`. The time it takes to perform these `num_allocations` is recorded using `steady_clock`, a time utility from the standard library. Each recorded time, along with the current iteration is written to a csv file, which can then be plotted.
 
@@ -146,8 +146,8 @@ If our system had strict real-time requirements, we can see how memory fragmenta
 The C++ standard library provides many useful features and containers, but some parts of it may not be suitable for embedded systems due to their memory and performance overhead. Be selective about which parts of the standard library you use and consider alternative, more lightweight libraries specifically designed for embedded systems.
 
 In general, the following language features can and should be used:
-
-- Enum classes
+  
+- [Enum classes](https://en.cppreference.com/w/cpp/language/enum) (C++11)
 - Classes
 - Inheritance
 - Templates
@@ -155,72 +155,31 @@ In general, the following language features can and should be used:
 - Operator overloading
 - References
 - Namespaces
-- Smart pointers (`std::unique_ptr`, `std::shared_ptr`)
 - Virtual methods
-- `using`
-- `auto`
-- `std::array`
-- `constexpr`
-- `consteval`
+- [`std::unique_ptr`](https://en.cppreference.com/w/cpp/memory/unique_ptr) (C++11)
+- [`using`](https://en.cppreference.com/w/cpp/language/type_alias) (C++11)
+- [`auto`](https://en.cppreference.com/w/cpp/language/auto) (C++11, C++17)
+- [`std::array`](https://en.cppreference.com/w/cpp/container/array) (C++11)
+- [`std::string_view`](https://en.cppreference.com/w/cpp/string/basic_string_view) (C++17)
+- [`constexpr`](https://en.cppreference.com/w/cpp/language/constexpr) (C++11)
+- [`consteval`](https://en.cppreference.com/w/cpp/language/consteval) (C++20)
+- [`if constexpr`](https://en.cppreference.com/w/cpp/language/if) (C++17)
+- [`if consteval`](https://en.cppreference.com/w/cpp/language/if) (C++23)
+- [`noexcept specifier`](https://en.cppreference.com/w/cpp/language/noexcept_spec) (C++11)
+- [`noexcept operator`](https://en.cppreference.com/w/cpp/language/noexcept) (C++11)
+- [`static_assert`](https://en.cppreference.com/w/cpp/language/static_assert) (C++11, C++17)
+- [Exceptions](https://en.cppreference.com/w/cpp/language/exceptions)
+- [Function Objects](https://en.cppreference.com/w/cpp/utility/functional)
+- [Unit Types](https://en.cppreference.com/w/cpp/language/type_alias), e.g. [std::chrono::duration](https://en.cppreference.com/w/cpp/chrono/duration) (C++11)
 
 And the following language features could be used, but only after careful consideration, and depending on the platform:
-- `new`/`delete`
-- RTTI
-- Exceptions
-- `std::string`
-- `std::vector`
-- Template metaprogramming
 
-For each of the language features above, provide one or more reasons why they are recommended or not recommended for use in an embedded context. Research if you need to.
-
-```
-```
-
-***
-
-```
-- Enum classes: Provide better type safety and scoping compared to plain enums, which helps prevent bugs and improves code readability.
-
-- Classes: Encapsulate data and behavior, promoting modularity, code reuse, and maintainability.
-
-- Inheritance: Enables code reuse and abstraction, simplifying complex systems.
-
-- Templates: Enable compile-time polymorphism and code reuse, reducing code duplication and runtime overhead.
-
-- Function overloading and default parameters: Improves code readability and flexibility by allowing multiple implementations of a function based on argument types or providing default values for arguments.
-
-- Operator overloading: Allows custom implementations of operators for user-defined types, improving code readability and consistency.
-
-- References: Provide safer and more predictable behavior compared to pointers, reducing the risk of null pointer dereferences and other memory-related bugs.
-
-- Namespaces: Prevent naming conflicts and organize code, improving modularity and maintainability.
-
-- Smart pointers (e.g., std::unique_ptr, std::shared_ptr): Automatically manage memory allocation and deallocation, reducing the risk of memory leaks and making code more robust.
-
-- using: Allows for type aliasing and simplifies code, improving readability.
-
-- auto: Enables automatic type deduction, making code more concise and less error-prone.
-
-- std::array: Provides a fixed-size, stack-allocated container, ensuring predictable memory usage and performance.
-
-- constexpr: Enables compile-time constant expression evaluation, reducing runtime overhead and improving performance.
-
-- consteval: Enforces compile-time evaluation of a function, ensuring no runtime overhead.
-
-- new/delete: Can lead to memory leaks and fragmentation, which is problematic in memory-constrained environments. Prefer using smart pointers or stack-based allocation.
-
-- Virtual methods: Introduce runtime overhead due to vtable lookups and can increase code size. Consider alternatives such as static polymorphism with templates.
-
-- RTTI (Run-Time Type Information): Increases code size and introduces runtime overhead, which can be problematic in resource-constrained systems.
-
-- Exceptions: Can introduce significant code size overhead, unpredictable performance, and stack unwinding issues. Prefer error codes or other error handling mechanisms in critical systems.
-
-- std::string: Uses dynamic memory allocation and can cause memory fragmentation. Consider using fixed-size character arrays or custom string types optimized for embedded systems.
-
-- std::vector: Uses dynamic memory allocation and can cause memory fragmentation. Prefer fixed-size containers like std::array or custom containers optimized for embedded systems.
-
-- Template metaprogramming: Can lead to code bloat and increased compilation times. Use with caution and measure its impact on code size and performance.
-```
+- [`new`](https://en.cppreference.com/w/cpp/language/new)/[`delete`](https://en.cppreference.com/w/cpp/language/delete)
+- [`std::shared_ptr`](https://en.cppreference.com/w/cpp/memory/shared_ptr) (C++11)
+- [RTTI](https://en.cppreference.com/w/cpp/language/typeid)
+- [`std::string`](https://en.cppreference.com/w/cpp/string/basic_string)
+- [`std::vector`](https://en.cppreference.com/w/cpp/container/vector)
+- [`std::function`](https://en.cppreference.com/w/cpp/utility/functional/function)
 
 # Exercises
 ## Exercise 1
@@ -268,7 +227,7 @@ int main() {
 ```
 
 ## Exercise 3
-Create an abstract class called Sensor with a pure virtual function read() that returns a float. Derive two classes from Sensor: TemperatureSensor and PressureSensor. Implement the read() function for each derived class, simulating reading temperature and pressure values.
+Create two abstract classes called `TemperatureSensor` and `PressureSensor`, each with a pure virtual function read() that returns a `temperature::kelvin` and `pressure::psi`, respectively. Derive `CPUTemperature`, `CabinTemperature`, and `TirePressure` from the appropriate base types. Implement the `read()` function for each derived class, simulating reading temperature and pressure values. Bonus points for using unit types instead of bare `double`s or `float`s.
 
 ```
 ```
@@ -278,30 +237,65 @@ Create an abstract class called Sensor with a pure virtual function read() that 
 ```cpp
 #include <iostream>
 
-class Sensor {
+namespace temperature {
+    struct kelvin {
+        double value;
+        explicit kelvin(double v) : value(v) {}
+    };
+}
+
+namespace pressure {
+    struct psi {
+        double value;
+        explicit psi(double v) : value(v) {}
+    };
+}
+
+class TemperatureSensor {
 public:
-    virtual float read() = 0;
+    virtual temperature::kelvin read() const = 0;
 };
 
-class TemperatureSensor : public Sensor {
+class PressureSensor {
 public:
-    float read() override {
-        return 25.0f;  // Simulate reading temperature
+    virtual pressure::psi read() const = 0;
+};
+
+class CPUTemperature : public TemperatureSensor {
+public:
+    temperature::kelvin read() const override {
+        return temperature::kelvin{310.0};
     }
 };
 
-class PressureSensor : public Sensor {
+class CabinTemperature : public TemperatureSensor {
 public:
-    float read() override {
-        return 1013.25f;  // Simulate reading pressure
+    temperature::kelvin read() const override {
+        return temperature::kelvin{295.0};
+    }
+};
+
+class TirePressure : public PressureSensor {
+public:
+    pressure::psi read() const override {
+        return pressure::psi{32.0};
     }
 };
 
 int main() {
-    TemperatureSensor tempSensor;
-    PressureSensor pressureSensor;
-    std::cout << "Temperature: " << tempSensor.read() << " °C" << std::endl;
-    std::cout << "Pressure: " << pressureSensor.read() << " hPa" << std::endl;
+    CPUTemperature cpu_temp_sensor;
+    CabinTemperature cabin_temp_sensor;
+    TirePressure tire_pressure_sensor;
+
+    temperature::kelvin cpu_temp = cpu_temp_sensor.read();
+    temperature::kelvin cabin_temp = cabin_temp_sensor.read();
+    pressure::psi tire_pressure = tire_pressure_sensor.read();
+
+    std::cout << "CPU Temperature: " << cpu_temp.value << " K" << std::endl;
+    std::cout << "Cabin Temperature: " << cabin_temp.value << " K" << std::endl;
+    std::cout << "Tire Pressure: " << tire_pressure.value << " psi" << std::endl;
+
+    return 0;
 }
 ```
 
@@ -354,7 +348,7 @@ public:
 class TemperatureSensor : public Sensor {
 public:
     float read() override {
-        return 25.0f;  // Simulate reading temperature
+        return 25.0f;
     }
 };
 

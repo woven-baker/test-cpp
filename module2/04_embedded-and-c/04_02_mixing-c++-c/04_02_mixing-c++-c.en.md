@@ -360,6 +360,15 @@ int main() {
 }
 ```
 
+This code works, but the C `print_array` function uses an anti-pattern that we should try to avoid. What is this anti-pattern?
+
+```
+```
+
+---
+
+Separate arguments for a pointer and its size is an anti-pattern and should be avoided. We can do better by using [std::span](https://en.cppreference.com/w/cpp/container/span) (C++ 20) or equivalent on both the C++ side and the C side with accompanying conversion functions that map between the two and provide getters for the pointer and the size.
+
 # Exercises
 
 # Exercise 1
