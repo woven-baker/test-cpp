@@ -258,7 +258,7 @@ int main() {
 
     inventory["Apples"] = 12;
 
-    for (const auto& [product, stock] : inventory) {
+    for (const auto& [product, stock] : inventory) {  // structured bindings
         std::cout << product << ": " << stock << '\n';
     }
 
