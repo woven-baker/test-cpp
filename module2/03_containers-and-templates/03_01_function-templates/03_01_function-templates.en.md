@@ -52,20 +52,20 @@ T add(T a, T b) {
 
 'add' is a perfectly good name for what all these functions do, and since the return type and the two argument types change and are all the same, I have used the placeholder type `T` in all of those places.
 
-If you try and compile this code right now, you will encounter a compiler error because we have not provided a declaration for T.
+If you try and compile this code right now, you will encounter a compiler error because we have not provided a declaration for `T`.
 
-The next step is to declare T using a `template parameter declaration`:
+The next step is to declare `T` using a template head:
 
 ```cpp
-template<typename T> // template parameter declaration
+template<typename T>
 T add(T a, T b) {
     return a + b;
 }
 ```
 
-Template parameters are declared using the `template` keyword followed by a set of angle brackets `<>` containing one or more type parameters. In this example, `T` is a template parameter that represents a data type. The `typename` keyword is used to indicate that T is a type.
+Template heads are declared using the `template` keyword followed by a set of angle brackets `<>` containing one or more parameters. In this example, `T` is a template type parameter that represents a data type. The `typename` keyword is used here to indicate that T is a type. There are also template [non-type parameters and template template parameters](https://en.cppreference.com/w/cpp/language/template_parameters).
 
-The last step is specifying the template paramater type when you call the function:
+The last step is specifying the template parameter type when you call the function:
 
 ```cpp
 int main() {
@@ -106,12 +106,20 @@ int main() {
 }
 ```
 
-We can use function templates in the same way you would normal functions:
+We can call function templates in the same way you would normal functions:
 
 ```cpp
 template<typename T>
 void log(T data) {
     std::cout << "Logging data: " << data << '\n';
+}
+
+int main() {
+    int int_data = 3;
+    log(int_data);
+
+    double double_data = 3.14;
+    log(double_data);
 }
 ```
 
@@ -119,6 +127,16 @@ void log(T data) {
 template<typename T, typename U>
 auto max(T x, U y) {
     return (x > y) ? x : y;
+}
+
+int main() {
+    int int_a = 3;
+    int int_b = 5;
+    std::cout << max(int_a, int_b) << std::endl;
+
+    int double_a = 3.14;
+    int double_b = 5.25;
+    std::cout << max(double_a, double_b) << std::endl;
 }
 ```
 
@@ -158,6 +176,31 @@ Adding strings: Hello World
 # Exercises
 
 ## Exercise 1
+Consider the following function template:
+
+```cpp
+template <typename T>
+T add(T a, T b) {
+    return a + b;
+}
+```
+
+Which of the following is a correct way to call `add` with two `float` arguments?
+
+```cpp
+a) add<float>(3.0, 4.0)
+b) add(3.0f, 4.0f)
+c) add<float, float>(3.0, 4.0)
+d) add(3.0, 4.0f)
+```
+
+---
+
+```
+a) and b)
+```
+
+## Exercise 2
 Write a C++ function template called min that accepts two arguments of the same type and returns the smallest value of the two.
 
 ```
@@ -179,7 +222,7 @@ int main() {
 }
 ```
 
-## Exercise 2
+## Exercise 3
 Write a function template called swap that swaps the values of two variables of the same type.
 
 ```
@@ -206,36 +249,6 @@ int main() {
 }
 ```
 
-## Exercise 3
-Write a function template called find that accepts a vector of a certain type and a value of the same type. The function should return the index of the first occurrence of the value in the vector or -1 if the value is not found.
-
-```
-```
-
-***
-
-```cpp
-#include <vector>
-
-template<typename T>
-int find(const std::vector<T> &data, const T &value) {
-    for (size_t i = 0; i < data.size(); ++i) {
-        if (data[i] == value) {
-            return static_cast<int>(i);
-        }
-    }
-    return -1;
-}
-
-int main() {
-    std::vector<int> intVec = {1, 2, 3, 4, 5};
-    std::cout << "Index of 3 in intVec: " << find(intVec, 3) << '\n';
-    std::cout << "Index of 6 in intVec: " << find(intVec, 6) << '\n';
-
-    return 0;
-}
-```
-
 ## Exercise 4
 You have been given the following code:
 
@@ -255,46 +268,33 @@ T sum(const std::vector<T> &data) {
 int main() {
     std::vector<int> intVec = {1, 2, 3, 4, 5};
     std::vector<double> doubleVec = {1.1, 2.2, 3.3, 4.4, 5.5};
+    std::vector<std::string> stringVec = {"one", "two", "three"};
 
     std::cout << "Sum of intVec: " << sum(intVec) << '\n';
     std::cout << "Sum of doubleVec: " << sum(doubleVec) << '\n';
+    std::cout << "Sum of stringVec: " << sum(stringVec) << '\n';
 
     return 0;
 }
 ```
 
-The code is meant to calculate the sum of elements in a vector using a function template. However, the code will not compile as is. Identify the issue, fix it, and provide a working version of the code.
+The code is meant to calculate the sum of elements in a vector using a function template. The code will compile as is, but there will be a segmentation fault when the code is executed. Identify the issue, fix it, and provide a working version of the code.
 
 ```
 ```
 
 ***
 
-
 The issue with the code is that the sum function template is initialized with T result = 0;, which is only valid for numeric types. We can fix this by initializing result with the default value of the given type T:
 
-
 ```cpp
-#include <iostream>
-#include <vector>
-
 template<typename T>
 T sum(const std::vector<T> &data) {
-    T result = T(); // Initialize result with the default value of the given type T
+    T result = T();
     for (const auto &item : data) {
         result += item;
     }
     return result;
-}
-
-int main() {
-    std::vector<int> intVec = {1, 2, 3, 4, 5};
-    std::vector<double> doubleVec = {1.1, 2.2, 3.3, 4.4, 5.5};
-
-    std::cout << "Sum of intVec: " << sum(intVec) << '\n';
-    std::cout << "Sum of doubleVec: " << sum(doubleVec) << '\n';
-
-    return 0;
 }
 ```
 

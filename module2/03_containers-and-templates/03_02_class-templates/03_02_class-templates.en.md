@@ -169,7 +169,7 @@ public:
 };
 ```
 
-Now we have a specialized version of the Stack class template that is optimized for storing boolean values as bits. This version of the Stack class will be used when we create a stack of bool values:
+Now we have a specialized version of the `Stack` class template that is optimized for storing boolean values as bits. This version of the `Stack` class will be used when we create a stack of `bool` values:
 
 ```cpp
 int main() {
@@ -238,7 +238,7 @@ public:
 };
 ```
 
-Which of the following code snippets will instantiate an Array object that can store 5 float values?
+Which of the following code snippets will instantiate an `Array` object that can store 5 `float` values?
 
 ```cpp
 A. Array<float> arr(5);
@@ -254,7 +254,7 @@ A
 ```
 
 ## Exercise 3
-Create a class template for a Pair class that can store two values of the same but any type. Implement a member function named print() that prints both values separated by a comma.
+Create a class template for a Pair class that can store two values of the same but any type. Implement a member function named `print()` that prints both values separated by a comma.
 
 ```
 ```
@@ -293,7 +293,7 @@ int main() {
 ```
 
 ## Exercise 4
-Alter the previous class template for a Pair class so that it can store two values of any type, for example an integer and a string together. You'll need to research and apply `default template arguments` to answer this exercise.
+Alter the previous class template for a Pair class so that it can store two values of any type, for example an integer and a string together. The existing form with a pair of values of the same type, i.e. `Pair<int>`, should still work. You'll need to research and apply *[default template arguments](https://en.cppreference.com/w/cpp/language/template_parameters)* to answer this exercise. You only need to change a single line.
 
 ```
 ```
@@ -358,17 +358,16 @@ public:
 };
 ```
 
-The Matrix class template is using `non-type template parameters` for the number of rows (R) and columns (C). Research non-type template parameters and answer the following questions:
+The Matrix class template is using *non-type template parameters* for the number of rows (R) and columns (C). Research [*non-type template parameters*](https://en.cppreference.com/w/cpp/language/template_parameters) and answer the following questions:
 
-1. What are non-type template parameters and how do they differ from `type template parameters`?
-2. Can non-type template parameters be of any data type? If not, what restrictions apply?
+1. What are *non-type template parameters* and how do they differ from *type template parameters*?
+2. Can *non-type template parameters* be of any data type? If not, what restrictions apply?
 
 ```
 ```
 
 ***
 
-```
 1. Non-type template parameters are template parameters that represent values rather than types. While type template parameters, like typename T, allow you to create classes or functions that work with different types, non-type template parameters allow you to create classes or functions that work with different constant values.
 
 2. Non-type template parameters cannot be of any data type. They must be one of the following:
@@ -380,4 +379,3 @@ The Matrix class template is using `non-type template parameters` for the number
   - std::integral_constant or similar types.
 
   It is important to note that non-type template parameters must be constant expressions, meaning their values must be known at compile-time.
-```

@@ -59,12 +59,10 @@ Here's an example of using a std::vector to store and manipulate integer values:
 int main() {
     std::vector<int> numbers;
 
-    // Adding elements to the vector
     for (int i = 1; i <= 5; ++i) {
         numbers.push_back(i);
     }
 
-    // Accessing elements using an index
     for (size_t i = 0; i < numbers.size(); ++i) {
         std::cout << numbers[i] << ' ';
     }
@@ -80,9 +78,9 @@ Output:
 1 2 3 4 5
 ```
 
-This simple example demonstrates how to create a vector of integers, add elements to the vector using push_back(), and access the elements using the array indexing operator [].
+This simple example demonstrates how to create a vector of integers, add elements to the vector using `push_back()`, and access the elements using the array indexing operator `[]`.
 
-Here's an example of using a std::map to store and manipulate a dictionary of words and their frequencies:
+Here's an example of using a `std::map` to store and manipulate a dictionary of words and their frequencies:
 
 ```cpp
 #include <iostream>
@@ -92,15 +90,12 @@ Here's an example of using a std::map to store and manipulate a dictionary of wo
 int main() {
     std::map<std::string, int> word_frequency;
 
-    // Adding elements to the map
     word_frequency["apple"] = 3;
     word_frequency["banana"] = 2;
     word_frequency["orange"] = 1;
 
-    // Accessing elements using the key
     std::cout << "Frequency of 'apple': " << word_frequency["apple"] << '\n';
 
-    // Iterating through the map
     for (const auto &entry : word_frequency) {
         std::cout << entry.first << ": " << entry.second << '\n';
     }
@@ -127,7 +122,7 @@ In order to choose the most appropriate container for a specific use case, it's 
 ## Fast insertion and deletion at both ends
 **Scenario**: Imagine you are building a simple web server that maintains a list of incoming requests. The server processes requests in a first-in, first-out (FIFO) manner, and new requests are added to the end of the queue.
 
-**Solution**: std::deque is the most appropriate container for this use case, as it allows for fast insertion at the back and fast removal at the front.
+**Solution**: `std::deque` is the most appropriate container for this use case, as it allows for fast insertion at the back and fast removal at the front.
 
 ```cpp
 #include <iostream>
@@ -136,12 +131,10 @@ In order to choose the most appropriate container for a specific use case, it's 
 int main() {
     std::deque<std::string> request_queue;
 
-    // Add requests to the back of the queue
     request_queue.push_back("Request 1");
     request_queue.push_back("Request 2");
     request_queue.push_back("Request 3");
 
-    // Process requests in a FIFO manner
     while (!request_queue.empty()) {
         std::cout << "Processing: " << request_queue.front() << '\n';
         request_queue.pop_front();
@@ -154,7 +147,7 @@ int main() {
 ## Efficient sorting and removal of duplicates
 **Scenario**: You are building a program to analyze a large text file and generate a sorted list of unique words found in the file.
 
-**Solution**: std::set is the most appropriate container for this use case, as it efficiently sorts elements and removes duplicates.
+**Solution**: `std::set` is the most appropriate container for this use case, as it efficiently sorts elements and removes duplicates.
 
 ```cpp
 #include <iostream>
@@ -166,12 +159,10 @@ int main() {
     std::istringstream iss(text);
     std::set<std::string> unique_words;
 
-    // Add words to the set
     for (std::string word; iss >> word;) {
         unique_words.insert(word);
     }
 
-    // Print sorted unique words
     for (const std::string& word : unique_words) {
         std::cout << word << " ";
     }
@@ -181,29 +172,43 @@ int main() {
 ```
 
 ## Fast random access to elements
-**Scenario**: You are building a program to manage a database of employees in a company. You need to be able to quickly access employee records by their index.
+**Scenario**: You are building an application to analyze sensor data. The sensor records data points at fixed intervals, and the application must store these data points, calculate some statistics like the average, and retrieve values at specific positions.
 
-**Solution**: std::vector is the most appropriate container for this use case, as it provides fast random access to elements.
+**Solution**: `std::vector` is the most appropriate container for this use case, as it provides efficient contiguous memory allocation, fast access to elements using indices, and dynamic resizing when needed.
 
 ```cpp
 #include <iostream>
 #include <vector>
+#include <numeric>
+#include <algorithm>
 
-struct Employee {
-    std::string name;
-    int age;
-};
+double calculate_average(const std::vector<double>& data) {
+    if (data.empty()) return 0.0;
+    double sum = std::accumulate(data.begin(), data.end(), 0.0);
+    return sum / data.size();
+}
 
 int main() {
-    std::vector<Employee> employees = {
-        {"Alice", 30},
-        {"Bob", 25},
-        {"Charlie", 22}
-    };
+    std::vector<double> sensor_data;
 
-    int index = 1;
-    std::cout << "Employee at index " << index << ": " <<
-                 employees[index].name << ", " << employees[index].age << '\n';
+    sensor_data.push_back(20.5);
+    sensor_data.push_back(21.3);
+    sensor_data.push_back(19.8);
+    sensor_data.push_back(22.1);
+
+    double average = calculate_average(sensor_data);
+    std::cout << "Average sensor data value: " << average << std::endl;
+
+    double third_data_point = sensor_data[2];
+    std::cout << "Third data point: " << third_data_point << std::endl;
+
+    std::sort(sensor_data.begin(), sensor_data.end());
+
+    std::cout << "Sorted sensor data: ";
+    for (double data_point : sensor_data) {
+        std::cout << data_point << " ";
+    }
+    std::cout << std::endl;
 
     return 0;
 }
@@ -212,7 +217,7 @@ int main() {
 ## Efficient insertion and deletion in the middle - std::list
 **Scenario**: You are building a program to manage a playlist of songs, where users can add or remove songs at any position in the playlist.
 
-**Solution**: std::list is the most appropriate container for this use case, as it allows for efficient insertion and deletion of elements in the middle of the sequence.
+**Solution**: `std::list` is the most appropriate container for this use case, as it allows for efficient insertion and deletion of elements in the middle of the sequence.
 
 ```cpp
 #include <iostream>
@@ -221,10 +226,8 @@ int main() {
 int main() {
     std::list<std::string> playlist = {"Song A", "Song B", "Song C"};
 
-    // Insert a new song after the first song
     playlist.insert(std::next(playlist.begin()), "Song D");
 
-    // Remove the second song
     playlist.erase(std::next(playlist.begin()));
 
     for (const std::string& song : playlist) {
@@ -238,7 +241,7 @@ int main() {
 ## Mapping keys to values
 **Scenario**: You are building an application to manage an inventory for a store. You need to associate product names with their respective stock counts.
 
-**Solution**: std::map is the most appropriate container for this use case, as it efficiently maintains a mapping of keys to values, with unique keys.
+**Solution**: `std::map` is the most appropriate container for this use case, as it efficiently maintains a mapping of keys to values, with unique keys.
 
 ```cpp
 #include <iostream>
@@ -251,13 +254,10 @@ int main() {
         {"Bananas", 7}
     };
 
-    // Add a new product to the inventory
     inventory["Grapes"] = 15;
 
-    // Update the stock count of a product
     inventory["Apples"] = 12;
 
-    // Print the inventory
     for (const auto& [product, stock] : inventory) {
         std::cout << product << ": " << stock << '\n';
     }
@@ -339,7 +339,7 @@ A
 ```
 
 ## Exercise 3
-Write a program that creates a std::set of integers and adds the numbers 1 to 10 to the set. Then, remove all even numbers from the set and print the remaining elements.
+Write a program that creates a `std::set` of integers and adds the numbers 1 to 10 to the set. Then, remove all even numbers from the set and print the remaining elements.
 
 ```
 ```
@@ -353,17 +353,14 @@ Write a program that creates a std::set of integers and adds the numbers 1 to 10
 int main() {
     std::set<int> numbers;
 
-    // Adding the numbers 1 to 10
     for (int i = 1; i <= 10; ++i) {
         numbers.insert(i);
     }
 
-    // Removing even numbers
     for (int i = 2; i <= 10; i += 2) {
         numbers.erase(i);
     }
 
-    // Printing the remaining elements
     for (const auto &num : numbers) {
         std::cout << num << ' ';
     }
@@ -380,7 +377,7 @@ Output:
 ```
 
 ## Exercise 4
-Consider the following code that uses a std::list of integers. What is the output?
+Consider the following code that uses a `std::list` of integers. What is the output?
 
 ```cpp
 #include <iostream>
@@ -420,7 +417,7 @@ D
 ```
 
 ## Exercise 5
-Write a program that creates a std::deque of integers and adds the numbers 1 to 5 to the front of the deque. Then, remove all odd numbers from the deque and print the remaining elements.
+Write a program that creates a `std::deque` of integers and adds the numbers 1 to 5 to the front of the deque. Then, remove all odd numbers from the deque and print the remaining elements.
 
 ```
 ```
@@ -434,12 +431,10 @@ Write a program that creates a std::deque of integers and adds the numbers 1 to 
 int main() {
     std::deque<int> numbers;
 
-    // Adding the numbers 1 to 5 to the front
     for (int i = 1; i <= 5; ++i) {
         numbers.push_front(i);
     }
 
-    // Removing odd numbers
     for (auto iter = numbers.begin(); iter != numbers.end();) {
         if (*iter % 2 != 0) {
             iter = numbers.erase(iter);
@@ -448,7 +443,6 @@ int main() {
         }
     }
 
-    // Printing the remaining elements
     for (const auto &num : numbers) {
         std::cout << num << ' ';
     }
@@ -487,5 +481,5 @@ E. std::map
 ```
 E
 
-An std::map container would be most appropriate because it allows for efficient lookup, insertion, and deletion of key-value pairs. In this case, the key would be the student's name, and the value would be the corresponding test score.
+A std::map container would be most appropriate because it allows for efficient lookup, insertion, and deletion of key-value pairs. In this case, the key would be the student's name, and the value would be the corresponding test score.
 ```
