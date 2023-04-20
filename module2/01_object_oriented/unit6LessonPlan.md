@@ -6,8 +6,6 @@
 - std::array
 - for-each
 - Error handling
-- Debugging
-- Testing
 
 ## Enums (30m, 10:30 - 11:00)
 - Instructor-led concepts and exercises (10m)
