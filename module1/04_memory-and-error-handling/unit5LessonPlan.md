@@ -9,13 +9,13 @@
 - Namespaces
 - Using
 
-## Memory and Addresses (45m, 10:30 - 11:15)
-- Instructor-led concepts and exercises (15m)
-- Learner-led exercises (30m)
-
-## References and Pointers (75m, 11:15 - 12:30)
+## Memory and Addresses (60m, 10:30 - 11:30)
 - Instructor-led concepts and exercises (25m)
-- Learner-led exercises (50m)
+- Learner-led exercises (35m)
+
+## References and Pointers (60m, 11:30 - 12:30)
+- Instructor-led concepts and exercises (25m)
+- Learner-led exercises (35m)
 
 ## Lunch (1h, 12:30 - 13:30)
 
