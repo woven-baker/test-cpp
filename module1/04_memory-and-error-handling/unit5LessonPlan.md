@@ -19,13 +19,9 @@
 
 ## Lunch (1h, 12:30 - 13:30)
 
-## std::array (30m, 13:30 - 14:00)
-- Instructor-led concepts and exercises (10m)
-- Learner-led exercises (20m)
-
-## for-each (15m, 14:00 - 14:15)
-- Instructor-led concepts and exercises (5m)
-- Learner-led exercises (10m)
+## std::array and std::vector (45m, 13:30 - 14:15)
+- Instructor-led concepts and exercises (20m)
+- Learner-led exercises (25m)
   
 ## Error-Handling (75m, 14:15 - 15:30)
 - Instructor-led concepts and exercises (25m)
