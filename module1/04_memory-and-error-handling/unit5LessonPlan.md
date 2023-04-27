@@ -19,7 +19,7 @@
 
 ## Lunch (1h, 12:30 - 13:30)
 
-## std::array and std::vector (45m, 13:30 - 14:15)
+## Introduction to std::array and std::vector (45m, 13:30 - 14:15)
 - Instructor-led concepts and exercises (20m)
 - Learner-led exercises (25m)
   
