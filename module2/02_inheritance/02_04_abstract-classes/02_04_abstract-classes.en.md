@@ -31,9 +31,8 @@ int main() {
 }
 ```
 
-```
-```
-***
+---
+
 ```bash
 ... error: variable type 'Sensor' is an abstract class                                           
     Sensor sensor;                                                                                               
@@ -117,7 +116,9 @@ A: Nothing
 B: There is a lot of code duplication
 C: You will need to overload handleData every time you create a new sensor type that inherits from Sensor
 ```
-***
+
+---
+
 ```
 B, C
 ```
@@ -143,10 +144,7 @@ float handleData(const Sensor& sensor) {
 ## Exercise 1
 Create an abstract class Shape with a pure virtual function `area()`. Derive Rectangle and Circle classes from Shape, and implement the Area() function for each. Calculate and display the area of different shapes using the derived classes.
 
-```
-```
-
-***
+---
 
 ```cpp
 #include <iostream>
@@ -199,10 +197,7 @@ int main() {
 
 Create an abstract class BankAccount with pure virtual functions deposit(), withdraw(), and getBalance(). Derive SavingsAccount and CheckingAccount classes from BankAccount, and implement the virtual functions for each. Simulate depositing, withdrawing, and checking the balance for both account types.
 
-```
-```
-
-***
+---
 
 ```cpp
 #include <iostream>

@@ -83,7 +83,8 @@ B: The process of creating a new class by reusing properties and methods from an
 C: The process of splitting a large class into smaller, more specialized classes.
 D: The process of combining multiple classes into a single, more general class.
 ```
-***
+
+---
 
 ```
 B
@@ -111,7 +112,7 @@ C: A Mammal, Bird, and Reptile are Animals.
 D: A Mammal, Bird, and Reptile have an Animal.
 ```
 
-***
+---
 
 ```
 C
@@ -120,10 +121,7 @@ C
 ## Exercise 3 (Level 3)
 Imagine you are designing a simple vehicle hierarchy. The base class is called Vehicle, which contains common properties like speed and fuel. You also have two derived classes: Car and Motorcycle, both of which inherit from Vehicle. Create a pseudocode representation of this class hierarchy.
 
-```
-```
-
-***
+---
 
 ```cpp
 class Vehicle {
@@ -164,7 +162,7 @@ C: Modify the Shape base class to include new properties required for perimeter 
 D: Create a new PerimeterCalculator class that takes a Shape object as input and calculates the perimeter based on the shape's properties.
 ```
 
-***
+---
 
 ```
 A

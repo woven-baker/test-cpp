@@ -61,10 +61,7 @@ int main() {
 }
 ```
 
-```
-```
-
-***
+---
 
 ```
 Base2 constructor
@@ -105,10 +102,7 @@ int main() {
 
 What should be the output of the above code?
 
-```
-```
-
-***
+---
 
 ```bash
 error: member 'print'
@@ -202,10 +196,7 @@ int main() {
 }
 ```
 
-```
-```
-
-***
+---
 
 ```
 Base constructor
@@ -301,7 +292,7 @@ C: A compiler error occurs due to ambiguity.
 D: The getID() function of the SerialFlash class will be called.
 ```
 
-***
+---
 
 ```
 C: A compiler error occurs due to ambiguity.
@@ -326,7 +317,7 @@ C: No corrections.
 D: It would be more appropriate to use composition instead of inheritance.
 ```
 
-***
+---
 
 ```
 D: It would be more appropriate to use composition instead of inheritance.

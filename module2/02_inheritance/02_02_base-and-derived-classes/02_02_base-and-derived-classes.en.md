@@ -39,10 +39,7 @@ public:
 
 What is wrong with this code?
 
-```
-```
-
-***
+---
 
 This approach exposes the member variables to any code that uses the Shape class, violating the principle of encapsulation.
 
@@ -94,6 +91,7 @@ protected:
     int color;
 };
 ```
+
 Now, let's create some more complete derived classes and see how protected members work:
 
 ```cpp
@@ -113,6 +111,7 @@ public:
     }
 };
 ```
+
 Both Circle and Rectangle can access the protected members `x`, `y`, and `color` from the Shape class, allowing them to manipulate these properties as needed.
 
 ## Constructors and Destructors in Inheritance
@@ -139,10 +138,7 @@ int main() {
 }
 ```
 
-```
-```
-
-***
+---
 
 ```cpp
 Base constructor
@@ -191,7 +187,7 @@ B: Derived
 C: Compiler Error
 ```
 
-***
+---
 
 ```
 A
@@ -242,7 +238,7 @@ B: Derived value: 5
 C: Compiler Error
 ```
 
-***
+---
 
 ```
 B
@@ -283,7 +279,6 @@ int main() {
 
     return 0;
 }
-
 ```
 
 ```
@@ -303,7 +298,7 @@ C: Base constructor
 D: Compiler error
 ```
 
-***
+---
 
 ```
 A

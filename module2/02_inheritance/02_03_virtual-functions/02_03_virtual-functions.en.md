@@ -2,7 +2,6 @@
 Concept: C++ Virtual Functions
 Required: [ C++ Functions, C++ Object Oriented Programming, C++ Classes, C++ Inheritance, C++ Pointers, C++ References ]
 Notes: 
-- Horizontal rules, presented as ***, denote places past which the learner cannot see additional content. They appear just after a quiz or exercise that expects an answer so that the learner can focus on answering the question at hand with the information they have been given thus far. If successful, the following content until the next --- is revealed.
 - Currently using pieces from learncpp.com, which I will make more my own.
 ---
 
@@ -40,10 +39,8 @@ int main() {
 }
 ```
 
-Answer:
-```
-```
-***
+---
+
 ```
 Derived
 ```
@@ -85,10 +82,8 @@ int main() {
 }
 ```
 
-Answer:
-```
-```
-***
+---
+
 ```
 rBase is a C
 ```
@@ -163,7 +158,9 @@ int main() {
     return 0;
 }
 ```
+
 ## Containers
+
 ```cpp
 int main() {
     Cat fred{ "Fred" };
@@ -218,10 +215,8 @@ x->f(4);
 ...
 ```
 
-Answer:
-```
-```
-***
+---
+
 ```
 X::f(): 4
 ```
@@ -276,6 +271,7 @@ int main() {
     br.show();
 }
 ```
+
 ```
 A: Derived
    Derived
@@ -292,7 +288,7 @@ D: Base
 E: Compiler Error
 ```
 
-***
+---
 
 ```
 A
@@ -333,6 +329,7 @@ int main() {
     return 0;
 }
 ```
+
 ```
 A: A
 
@@ -345,7 +342,7 @@ D: D
 E: Compiler Error
 ```
 
-***
+---
 
 ```
 C
@@ -386,6 +383,7 @@ int main() {
     return 0;
 }
 ```
+
 ```
 A: A
 
@@ -398,7 +396,7 @@ D: D
 E: Compiler Error
 ```
 
-***
+---
 
 ```
 A
