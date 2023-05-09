@@ -82,9 +82,6 @@ int* ages = new int[]{ 27, 28, 29, 30 };
 std::cout << sizeof(ages) << std::endl;
 ```
 
-```
-```
-
 ---
 
 ```
@@ -308,9 +305,6 @@ int main() {
 }
 ```
 
-```
-```
-
 ---
 
 ```cpp
@@ -330,9 +324,6 @@ int main() {
     long result = add(3, 4);
     return 0;
 }
-```
-
-```
 ```
 
 ---

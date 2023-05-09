@@ -1,15 +1,3 @@
----
-Guidelines:
-- Don't overuse try. In well-designed code, try blocks are rare.
-- Whenever we define a function, we should consider its preconditions and whether or not to test them. Do the arguments to the function make sense? If not, what should we do?
-- Formulating invariants helps us to understand what we want.
-- There are a variety of approaches to error handling.
-
-Terminate:
-- Cannot recover (e.g. memory exhaustion)
-- We have some other software monitoring and controlling our program, and it is responsible for restarting it when non-trivial errors occur.
----
-
 # Error Handling
 Imagine you're writing a program that reads data from a file, processes it, and then writes the result to another file. What if the input file doesn't exist, or the output file can't be created due to insufficient permissions? What if the input file is corrupted? What if the data in the file isn't in a format your program expects, or there is data missing from one line? Without proper error handling, your program could crash or worse: silently produce incorrect results.
 
@@ -159,9 +147,6 @@ In general we want to use exceptions in the following scenarios:
 
 Which of these scenarios apply to the previous example?
 
-```
-```
-
 ---
 
 None of these scenarios really apply. So we should feel fine about using return codes here.
@@ -303,9 +288,6 @@ int main() {
 
 Which code is cleaner? Easier to understand? Easier to modify? Easier to maintain? Easier to extend?
 
-```
-```
-
 ---
 
 ## Terminating
@@ -324,9 +306,6 @@ if (severe_error_occurred) {
 Keep in mind that terminating the program should be reserved for situations where recovery is impossible or undesirable.
 
 What would be an example of such a situation?
-
-```
-```
 
 ---
 
@@ -441,9 +420,6 @@ d) The static_assert keyword is followed by a constant expression and an optiona
 ## Exercise
 To catch an exception, you need to use a ____ block followed by one or more ____ blocks.
 
-```
-```
-
 ---
 
 ```
@@ -459,9 +435,6 @@ throw std::runtime_error("File not found");
 
 ## Exercise
 Describe the difference between runtime assertions and static assertions. Provide a use case for each.
-
-```
-```
 
 ---
 
@@ -510,9 +483,6 @@ d) Custom exception classes can make your error handling code more specific
 ## Exercise
 The ____ macro is used to create runtime assertions in C++.
 
-```
-```
-
 ---
 
 ```
@@ -522,9 +492,6 @@ The assert macro is used to create runtime assertions in C++.
 ## Exercise
 Write a line of code that uses `static_assert` to check if the `sizeof(int)` is exactly 4 bytes. Provide an error message "int must be 4 bytes" if the condition is not met.
 
-```
-```
-
 ---
 
 ```cpp
@@ -533,9 +500,6 @@ static_assert(sizeof(int) == 4, "int must be 4 bytes");
 
 ## Exercise
 What is an invariant, and why is it important for the correctness of your code?
-
-```
-```
 
 ---
 

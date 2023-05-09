@@ -290,9 +290,6 @@ int main() {
 ## Exercise 4
 Briefly explain the main differences between `std::array` and `std::vector`, and when you would use one over the other.
 
-```
-```
-
 ---
 
 `std::array` has a fixed size determined at compile time and is allocated on the stack, while `std::vector` has a dynamic size that can change at runtime and is allocated on the heap. `std::array` typically has better performance due to its stack allocation, but `std::vector` is far more flexible with its dynamic sizing. Use `std::array` when you know the size of the container at compile time and need better performance. Use `std::vector` when you need a dynamic container that can grow or shrink during runtime, and you can afford the slightly slower performance due to heap allocation.

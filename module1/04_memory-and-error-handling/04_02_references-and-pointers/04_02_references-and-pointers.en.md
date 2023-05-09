@@ -163,9 +163,6 @@ int main() {
 
 What is the output of the previous code:
 
-```
-```
-
 ---
 
 ```
@@ -189,9 +186,6 @@ int main() {
 ```
 
 What is the output of the previous code:
-
-```
-```
 
 ---
 
@@ -436,9 +430,6 @@ int main() {
 
 What will be the output after the first `std::cout` statement?
 
-```
-```
-
 ---
 
 ```
@@ -447,9 +438,6 @@ x: 1, y: 2, *p1: 2, *p2: 1, result: 3, ref: 3, global_var: 3
 
 ## Exercise 9
 What will be the output after the second `std::cout` statement?
-
-```
-```
 
 ---
 
