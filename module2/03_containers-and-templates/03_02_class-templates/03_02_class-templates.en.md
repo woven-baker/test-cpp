@@ -209,7 +209,7 @@ C. To create specialized classes for specific data types
 D. To encapsulate data and provide a single interface for various implementations
 ```
 
-***
+---
 
 ```
 A
@@ -247,7 +247,7 @@ C. Array<float, 5> arr;
 D. Array<float> arr[5];
 ```
 
-***
+---
 
 ```
 A
@@ -256,10 +256,7 @@ A
 ## Exercise 3
 Create a class template for a Pair class that can store two values of the same but any type. Implement a member function named `print()` that prints both values separated by a comma.
 
-```
-```
-
-***
+---
 
 ```cpp
 #include <iostream>
@@ -295,10 +292,7 @@ int main() {
 ## Exercise 4
 Alter the previous class template for a Pair class so that it can store two values of any type, for example an integer and a string together. The existing form with a pair of values of the same type, i.e. `Pair<int>`, should still work. You'll need to research and apply *[default template arguments](https://en.cppreference.com/w/cpp/language/template_parameters)* to answer this exercise. You only need to change a single line.
 
-```
-```
-
-***
+---
 
 ```cpp
 #include <iostream>
@@ -363,10 +357,7 @@ The Matrix class template is using *non-type template parameters* for the number
 1. What are *non-type template parameters* and how do they differ from *type template parameters*?
 2. Can *non-type template parameters* be of any data type? If not, what restrictions apply?
 
-```
-```
-
-***
+---
 
 1. Non-type template parameters are template parameters that represent values rather than types. While type template parameters, like typename T, allow you to create classes or functions that work with different types, non-type template parameters allow you to create classes or functions that work with different constant values.
 

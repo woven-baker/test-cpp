@@ -89,10 +89,7 @@ From this output you can see that we are able to write just one function that is
 
 Let's go ahead and define another function template called `multiply` that returns the product of the two values passed to it and call this function with both int and double arguments:
 
-```
-```
-
-***
+---
 
 ```cpp
 template<typename T>
@@ -204,10 +201,7 @@ a) and b)
 ## Exercise 2
 Write a C++ function template called min that accepts two arguments of the same type and returns the smallest value of the two.
 
-```
-```
-
-***
+---
 
 ```cpp
 template<typename T>
@@ -226,10 +220,7 @@ int main() {
 ## Exercise 3
 Write a function template called swap that swaps the values of two variables of the same type.
 
-```
-```
-
-***
+---
 
 ```cpp
 template<typename T>
@@ -281,10 +272,7 @@ int main() {
 
 The code is meant to calculate the sum of elements in a vector using a function template. The code will compile as is, but there will be a segmentation fault when the code is executed. Identify the issue, fix it, and provide a working version of the code.
 
-```
-```
-
-***
+---
 
 The issue with the code is that the sum function template is initialized with T result = 0;, which is only valid for numeric types. We can fix this by initializing result with the default value of the given type T:
 
@@ -319,10 +307,7 @@ int main() {
 }
 ```
 
-```
-```
-
-***
+---
 
 ```
 Using function templates in this case is beneficial, as it allows you to create a reusable print function that can be applied to different data types without having to write separate implementations for each type. This adheres to the DRY principle and makes the code more maintainable.

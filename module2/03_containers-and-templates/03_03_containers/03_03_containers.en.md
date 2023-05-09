@@ -296,7 +296,7 @@ C: 50 40 30 20
 D: Compiler Error
 ```
 
-***
+---
 
 ```
 B
@@ -332,7 +332,7 @@ C: -1
 D: Compiler Error
 ```
 
-***
+---
 
 ```
 A
@@ -341,10 +341,7 @@ A
 ## Exercise 3
 Write a program that creates a `std::set` of integers and adds the numbers 1 to 10 to the set. Then, remove all even numbers from the set and print the remaining elements.
 
-```
-```
-
-***
+---
 
 ```cpp
 #include <iostream>
@@ -410,7 +407,7 @@ C: 5 4 3 10 2 1
 D: 5 4 10 3 2 1
 ```
 
-***
+---
 
 ```
 D
@@ -419,10 +416,7 @@ D
 ## Exercise 5
 Write a program that creates a `std::deque` of integers and adds the numbers 1 to 5 to the front of the deque. Then, remove all odd numbers from the deque and print the remaining elements.
 
-```
-```
-
-***
+---
 
 ```cpp
 #include <iostream>
@@ -473,10 +467,7 @@ D. std::set
 E. std::map
 ```
 
-```
-```
-
-***
+---
 
 ```
 E

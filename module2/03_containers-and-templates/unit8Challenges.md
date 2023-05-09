@@ -3,10 +3,7 @@
 ## Challenge 1
 Create a function template called print_elements that accepts a standard library container (like `std::vector`, `std::list`, or `std::deque`) and prints its elements. Test your function with at least two different types of containers.
 
-```
-```
-
-***
+---
 
 ```cpp
 #include <iostream>
@@ -41,10 +38,7 @@ Create a class template called `Stack` that mimics the behavior of a stack. This
 
 Use a standard library container (e.g., `std::vector`, `std::list`, or `std::deque`) as the underlying data structure for the stack. Test your class with at least two different types of containers.
 
-```
-```
-
-***
+---
 
 ```cpp
 #include <iostream>
@@ -102,10 +96,7 @@ int main() {
 ## Challenge 3
 Compare the performance of `std::vector`, `std::list`, and `std::deque` when used as the underlying data structure for a stack. Write a small program that performs a series of push and pop operations on a stack, then time the execution for each container type. Determine which container is the best choice for this application and explain your choice. Make sure to compile with -O0 so the compiler doesn't optimize away your code and result in useless benchmarks.
 
-```
-```
-
-***
+---
 
 ```cpp
 #include <iostream>
@@ -183,10 +174,7 @@ Design a program that reads a text file containing a list of names and phone num
 
 In this challenge, you will need to research and understand how to use `std::map` and its associated functions. Also, you'll need to implement input validation and error handling to ensure the program works as expected.
 
-```
-```
-
-***
+---
 
 ```cpp
 #include <iostream>

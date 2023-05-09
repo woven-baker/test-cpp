@@ -39,10 +39,7 @@ int main() {
 
 What is the output of this code?
 
-```
-```
-
-***
+---
 
 ```
 1, 2.5, Hello, 3, World
@@ -83,10 +80,7 @@ Let's go ahead and modify this print function so that the output becomes:
 (1) (2.5) (Hello) (3) (World)
 ```
 
-```
-```
-
-***
+---
 
 ```cpp
 #include <iostream>
@@ -175,10 +169,7 @@ C. To create specialized versions of templates for specific data types
 D. To create class hierarchies and establish relationships between classes
 ```
 
-```
-```
-
-***
+---
 
 ```
 B
@@ -203,10 +194,7 @@ C. printArguments();
 D. All of the above
 ```
 
-```
-```
-
-***
+---
 
 ```
 D
@@ -215,10 +203,7 @@ D
 ## Exercise 3
 Write a variadic function template called sum that takes any number of integer arguments and returns their sum. You can assume that the arguments are integers and the number of arguments is greater than 0.
 
-```
-```
-
-***
+---
 
 ```cpp
 #include <iostream>
@@ -255,10 +240,7 @@ std::cout << allTrue(true, false, true) << std::endl;
 std::cout << allTrue() << std::endl;
 ```
 
-```
-```
-
-***
+---
 
 ```cpp
 #include <iostream>
