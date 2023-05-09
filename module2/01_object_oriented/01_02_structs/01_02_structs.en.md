@@ -80,10 +80,7 @@ void draw(int x, int y, int x2, int y2);
 
 How could we use a struct to clean up this interface?
 
-```
-```
-
-***
+---
 
 ```cpp
 void draw(Point from, Point to);
@@ -110,10 +107,7 @@ int main() {
 }
 ```
 
-```
-```
-
-***
+---
 
 ```cpp
 #include <iostream>
@@ -146,10 +140,7 @@ Notice here we use a struct to bundle several values together so that they can b
 ## Exercise 1
 Define a struct called Car that represents a car's make, model, year, and color.
 
-```
-```
-
-***
+---
 
 ```cpp
 #include <iostream>
@@ -166,10 +157,7 @@ struct Car {
 ## Exercise 2
 Create a function that takes a Car struct as a parameter and prints its details.
 
-```
-```
-
-***
+---
 
 ```cpp
 void print_car(const Car& car) {
@@ -183,10 +171,7 @@ void print_car(const Car& car) {
 ## Exercise 3
 Declare an `std::array` of `Car` structs and initialize it with some sample data.
 
-```
-```
-
-***
+---
 
 ```cpp
 #include <array>
@@ -204,10 +189,7 @@ int main() {
 ## Exercise 4
 Use a loop to iterate over the array and call the function from step 2 to print the details of each car.
 
-```
-```
-
-***
+---
 
 ```cpp
 #include <iostream>

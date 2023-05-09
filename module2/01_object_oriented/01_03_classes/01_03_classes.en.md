@@ -71,10 +71,6 @@ int main() {
 
 If we run the above code, what output would we expect?
 
-```cpp
-
-```
-
 ---
 
 ```
@@ -118,10 +114,6 @@ Knowing this, what output would we expect if we add the following code to the en
 std::cout << car1.make << "\n";
 ```
 
-```cpp
-
-```
-
 ---
 
 ```cpp
@@ -142,10 +134,6 @@ What output would we expect if we add the following code instead:
 car1.printPriceChange(25'000, 26'000);
 ```
 
-```cpp
-
-```
-
 ---
 
 ```cpp
@@ -163,10 +151,6 @@ Here too we get a similar compiler error complaining that we are trying to acces
 We can, however, see that `printPriceChange` is called from within `setPrice` just fine. The private member variables are also accessed by every method just fine.
 
 Why are access specifiers important?
-
-```cpp
-
-```
 
 ---
 
@@ -346,10 +330,6 @@ g++ -std=c++20 -o car main.cpp car.cpp
 
 Create a simple class `Person` with two private member variables: `std::string name` and `int age`. Implement a constructor that takes two arguments (a string for the name and an integer for the age) and initializes the member variables with the given values.
 
-```cpp
-
-```
-
 ---
 
 ```cpp
@@ -366,10 +346,6 @@ private:
 ## Exercise 2
 
 Add a default constructor to the `Person` class that initializes the `name` to `"Unknown"` and the `age` to `0`.
-
-```cpp
-
-```
 
 ---
 
@@ -388,10 +364,6 @@ private:
 ## Exercise 3
 
 Implement a constructor for the `Person` class that takes only the name as an argument and initializes the age to `0`. Use **constructor delegation** to avoid duplicating the code.
-
-```cpp
-
-```
 
 ---
 

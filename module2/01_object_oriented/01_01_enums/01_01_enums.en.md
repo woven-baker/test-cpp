@@ -77,10 +77,7 @@ int main() {
 
 What is the output from the previous code?
 
-```
-```
-
-***
+---
 
 ```cpp
 enum.cpp:20:24: error: cannot initialize a variable of type 'Color' with an rvalue of type
@@ -187,10 +184,6 @@ enum class Color : int; // allowed
 
 Define an `enum class` called `Day` that represents the days of the week.
 
-```
-
-```
-
 ---
 
 ```cpp
@@ -209,10 +202,6 @@ enum class Day {
 
 Declare a variable of type `Day` and assign a value to it.
 
-```
-
-```
-
 ---
 
 ```cpp
@@ -222,10 +211,6 @@ Day today = Day::wednesday;
 ## Exercise 3
 
 Write a function that takes a `Day` variable as a parameter and prints the name of the day using a `switch` statement.
-
-```
-
-```
 
 ---
 
@@ -264,10 +249,6 @@ void printDay(Day day) {
 ## Exercise 4
 
 Test your function with various days of the week.
-
-```
-
-```
 
 ---
 

@@ -66,9 +66,6 @@ Output:
 20
 ```
 
-```
-```
-
 ---
 
 ```cpp
@@ -116,9 +113,6 @@ Output:
 120
 90
 Insufficient balance!
-```
-
-```
 ```
 
 ---
@@ -175,9 +169,6 @@ Implement a `Project` class with the following features:
 - A constructor that initializes the `Team` object.
 - A member function `add_team_member` to add a member to the team.
 - A member function `print_team_members` to print the members of the team.
-
-```
-```
 
 ---
 
@@ -246,9 +237,6 @@ int main() {
 ## Challenge 5
 
 Refactor the previous challenge's code to instead support adding projects to a team. A team can have multiple projects, and for each project there is a member of the team that has been selected as the lead member of the project. Be careful about data duplication and use pointers (or smart pointers) where necessary.
-
-```
-```
 
 ---
 
