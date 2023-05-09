@@ -34,10 +34,7 @@ For each of the following language features, provide one or more reasons why the
 - [`std::vector`](https://en.cppreference.com/w/cpp/container/vector)
 - [`std::function`](https://en.cppreference.com/w/cpp/utility/functional/function)
 
-```
-```
-
-***
+---
 
 - Enum classes: Provide better type safety and scoping compared to plain enums, which helps prevent bugs and improves code readability.
 

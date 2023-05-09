@@ -154,10 +154,7 @@ This last solution is the preferred solution.
 
 Why?
 
-```
-```
-
-***
+---
 
 Because adding the `extern "C"` logic inside the C header makes it easier for C++ users to #include it into their C++ code without needing modifications on their end, and the header will behave the same everywhere it is included. Since a C compiler won’t understand the `extern "C"` construct, the `extern "C" {` and `}` lines must be wrapped with an `#ifdef` so they will only be seen by C++ compilers and not by normal C compilers.
 
@@ -170,10 +167,7 @@ C. 3
 D. 4
 ```
 
-```
-```
-
-***
+---
 
 ```
 C
@@ -188,10 +182,7 @@ C. 3
 D. 4
 ```
 
-```
-```
-
-***
+---
 
 ```
 A or B
@@ -206,10 +197,7 @@ C. 3
 D. 4
 ```
 
-```
-```
-
-***
+---
 
 ```
 D
@@ -277,10 +265,7 @@ int main() {
 
 Let's practice this by creating another translation unit (header and source file) in C called `log_c.h` and `log_c.c` that contains the declaration and definition, respectively, of a `log_print` function that returns void and takes a single integer argument and prints it using `printf`. Wrap the declaration so that it can be called from within the C++ program, call `log_print` from within the main function above, passing in `sum` as the argument.
 
-```
-```
-
-***
+---
 
 ```c
 // log_c.c
@@ -446,10 +431,7 @@ The `-L` flag specifies a path containing the libraries. The `-l` flag specifies
 ## Exercise 2: Wrap the function declarations
 Wrap the LED controller C library function declarations using `extern "C"`.
 
-```
-```
-
-***
+---
 
 led_controller.h:
 
@@ -478,10 +460,7 @@ bool led_get_state(void);
 ## Exercise 3: Create a C++ LED Controller Class
 Create a C++ class called LedController that utilizes the C library to control the LED light. Implement member functions to initialize, turn on, turn off, and get the LED state.
 
-```
-```
-
-***
+---
 
 led_controller.hpp:
 
@@ -524,10 +503,7 @@ bool LedController::getState() {
 ## Exercise 4: Use the C++ LED Controller Class in a Program
 Create a C++ program that uses the LedController class to control the LED light. Turn on the LED, print its state, turn off the LED, and print its state again.
 
-```
-```
-
-***
+---
 
 main.cpp:
 
@@ -566,10 +542,7 @@ void double_array(int *arr, size_t size);
 
 Wrap the `double_array` declaration within the C header file.
 
-```
-```
-
-***
+---
 
 ```c
 // double_array.h
@@ -595,10 +568,7 @@ void double_array(int *arr, size_t size);
 
 Use `double_array` from within a C++ program by calling it on the underlying data from a `std::array`.
 
-```
-```
-
-***
+---
 
 ```cpp
 #include <array>
