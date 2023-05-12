@@ -172,7 +172,7 @@ The preprocessor will just replace `#include "math_utilities.h"` with the conten
 ![](compile2.png)
 
 ## Include Guards
-To prevent multiple inclusions of the same header file, we use include guards. They are preprocessor directives that wrap the entire header file. Here's an example:
+Including the same header file multiple times, either directly in the same file or transitively through including another header file which includes that header file, could cause redefinition errors. To prevent this we use include guards. They are preprocessor directives that wrap the entire header file, telling the preprocessor to skip it if it has already processed it for the current translation unit. Here's an example:
 
 **math_utilities.h**
 ```cpp
@@ -208,7 +208,32 @@ declarations
 ```
 
 ## Exercise 2
-Run the following compiler command:
+The preprocessor directive ____________ is used to include a header file in a C++ program.
+
+---
+
+```
+#include
+```
+
+## Exercise 3
+Which of the following statements are true about header files in C++? (Select all that apply)
+
+```
+a. Header files often end with the .h or .hpp extension.
+b. Header files contain the main function of a program.
+c. Header files can contain function declarations.
+d. Header files are preprocessed before the compilation of the program.
+```
+
+---
+
+```
+a, c, d
+```
+
+## Exercise 4
+Run the following compiler command on our previous source file:
 
 ```
 g++ -E -o math_utilities.i math_utilities.cpp
@@ -245,4 +270,46 @@ double degreesToRadians(double degrees) {
 
 The -E compiler option just runs the preprocessor. This allows us to see the effect of the `#include` on the file before it gets passed to the compiler.
 
-## Exercise 3
+## Exercise 5
+Write a C++ program with a header file `math_functions.h` which declares two functions, `add` and `subtract`. These functions should take two integers as parameters and return an integer. The definitions of these functions should be in a separate source file `math_functions.cpp`. Your main program should include `math_functions.h`, take two integers from the user, and print the sum and difference of the numbers using `add` and `subtract` respectively.
+
+---
+
+**math_functions.h**
+```cpp
+#pragma once
+
+int add(int a, int b);
+int subtract(int a, int b);
+```
+
+**math_functions.cpp**
+```cpp
+#include "math_functions.h"
+
+int add(int a, int b) {
+    return a + b;
+}
+
+int subtract(int a, int b) {
+    return a - b;
+}
+```
+
+**main.cpp**
+```cpp
+#include "math_functions.h"
+#include <iostream>
+
+int main() {
+    int num1, num2;
+
+    std::cout << "Enter two integers: ";
+    std::cin >> num1 >> num2;
+
+    std::cout << "Sum: " << add(num1, num2) << "\n";
+    std::cout << "Difference: " << subtract(num1, num2) << "\n";
+
+    return 0;
+}
+```
