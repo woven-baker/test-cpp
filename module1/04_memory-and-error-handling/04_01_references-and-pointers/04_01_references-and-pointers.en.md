@@ -367,32 +367,6 @@ if (ptr == nullptr)
 ```
 
 ## Exercise 7
-Given the following code, what will be the output?
-
-```cpp
-#include <iostream>
-
-void update(int*& p) {
-    p = new int{42};
-}
-
-int main() {
-    int x = 5;
-    int* p = &x;
-    update(p);
-    std::cout << "*p: " << *p << std::endl;
-    delete p;
-    return 0;
-}
-```
-
----
-
-```
-*p: 42
-```
-
-## Exercise 8
 Consider the following code:
 
 ```cpp
@@ -436,7 +410,7 @@ What will be the output after the first `std::cout` statement?
 x: 1, y: 2, *p1: 2, *p2: 1, result: 3, ref: 3, global_var: 3
 ```
 
-## Exercise 9
+## Exercise 8
 What will be the output after the second `std::cout` statement?
 
 ---

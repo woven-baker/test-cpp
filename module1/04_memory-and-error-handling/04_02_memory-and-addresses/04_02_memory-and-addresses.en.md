@@ -1,3 +1,7 @@
+---
+Required: [C++ Data Types, C++ Functions, C-Style Arrays]
+---
+
 # Memory
 
 ## Organization
@@ -239,14 +243,6 @@ If we instead enter 4, our stack and heap memory will look like the following:
 ![](heap2.png)
 
 Notice that the stack frame remains the same size, regardless of how much memory we've dynamically allocated on the heap, since we're just storing a pointer to the allocated memory!
-
-## Program Memory Layout
-
-Where do global or static variables live?
-
-![](programlayout.png)
-
-Global variables and static variables live in the Data section. The program code that the CPU executes is stored in the Text section.
 
 # Exercises
 

@@ -382,7 +382,7 @@ If any of these checks fail, the compilation will fail with the corresponding er
 
 # Exercises
 
-## Exercise
+## Exercise 1
 
 Which of the following is NOT a method for handling errors in C++?
 
@@ -399,7 +399,7 @@ d) Assertions
 c) Recursion
 ```
 
-## Exercise 
+## Exercise 2
 Select all the correct statements about static assertions:
 
 ```
@@ -417,7 +417,7 @@ c) static_assert can be used with or without templates and classes
 d) The static_assert keyword is followed by a constant expression and an optional error message
 ```
 
-## Exercise
+## Exercise 3
 To catch an exception, you need to use a ____ block followed by one or more ____ blocks.
 
 ---
@@ -426,14 +426,14 @@ To catch an exception, you need to use a ____ block followed by one or more ____
 To catch an exception, you need to use a try block followed by one or more catch blocks.
 ```
 
-## Exercise
+## Exercise 4
 Write a line of code that throws a std::runtime_error exception with the message "File not found" when a file fails to open.
 
 ```cpp
 throw std::runtime_error("File not found");
 ```
 
-## Exercise
+## Exercise 5
 Describe the difference between runtime assertions and static assertions. Provide a use case for each.
 
 ---
@@ -446,7 +446,7 @@ A use case for runtime assertions is to check for logic errors during developmen
 A use case for static assertions is to enforce constraints on the code at compile time, such as ensuring that certain data types have the correct sizes on a specific platform or that a template function is instantiated with the correct type. This can make the code more robust and easier to maintain.
 ```
 
-## Exercise
+## Exercise 6
 When should you use `std::abort()` to terminate your program?
 
 ```
@@ -462,7 +462,7 @@ d) When recovery is impossible or undesirable
 d) When recovery is impossible or undesirable
 ```
 
-## Exercise
+## Exercise 7
 Select all the correct statements about custom exception classes in C++:
 
 ```
@@ -480,7 +480,7 @@ b) Custom exception classes can provide more information about the error
 d) Custom exception classes can make your error handling code more specific
 ```
 
-## Exercise
+## Exercise 8
 The ____ macro is used to create runtime assertions in C++.
 
 ---
@@ -489,7 +489,7 @@ The ____ macro is used to create runtime assertions in C++.
 The assert macro is used to create runtime assertions in C++.
 ```
 
-## Exercise
+## Exercise 9
 Write a line of code that uses `static_assert` to check if the `sizeof(int)` is exactly 4 bytes. Provide an error message "int must be 4 bytes" if the condition is not met.
 
 ---
@@ -498,7 +498,7 @@ Write a line of code that uses `static_assert` to check if the `sizeof(int)` is 
 static_assert(sizeof(int) == 4, "int must be 4 bytes");
 ```
 
-## Exercise
+## Exercise 10
 What is an invariant, and why is it important for the correctness of your code?
 
 ---
@@ -507,7 +507,7 @@ What is an invariant, and why is it important for the correctness of your code?
 An invariant is a condition that must always hold true during the execution of a program or within a specific scope. Invariants are important for the correctness of your code because they establish certain assumptions that are always valid. This helps to catch bugs early and makes your code more robust and easier to reason about.
 ```
 
-## Exercise
+## Exercise 11
 Complete the following code snippet to catch a `std::runtime_error` exception and print the error message:
 
 ```cpp
@@ -534,7 +534,7 @@ catch (std::runtime_error e) {
 </details>
 ```
 
-## Exercise
+## Exercise 12
 Complete the following code snippet to create a runtime assertion that checks if a pointer `p` is not `nullptr`:
 
 ```cpp
@@ -557,7 +557,7 @@ int* p = someFunction();
 assert(p != nullptr);
 ```
 
-## Exercise
+## Exercise 13
 Complete the following code snippet to define a function `safe_divide` that throws a `std::runtime_error` exception with the message "Division by zero" when the divisor is zero:
 
 ```cpp
@@ -579,7 +579,7 @@ if (b == 0) {
 }
 ```
 
-## Exercise
+## Exercise 14
 Modify the following code snippet to use a `static_assert` that checks if sizeof(long) is at least 8 bytes. If the condition is not met, provide an error message "long must be at least 8 bytes".
 
 ```cpp
