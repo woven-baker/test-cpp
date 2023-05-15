@@ -1,8 +1,7 @@
 # Pointers and References
-Pointers and references allow you to manipulate memory addresses and access the data stored at those addresses directly. Understanding pointers and references is essential to writing efficient and flexible C++ code.
 
 ## Pointers
-A pointer is a variable that holds the address of another variable in memory. Pointers are declared using the `*` symbol after the data type.
+A pointer is a data type that holds the memory address of some object in memory.
 
 ### Declaration and Initialization
 To declare a pointer, you need to specify the data type of the variable it points to, followed by the `*` symbol and the pointer's name:
@@ -11,7 +10,7 @@ To declare a pointer, you need to specify the data type of the variable it point
 int* int_ptr;
 ```
 
-It's important to note that the pointer does not automatically point to a valid memory address. You need to explicitly assign the address of a variable to the pointer. You can use the address-of operator `&` to get the memory address of a variable.
+A pointer does not automatically point to a valid memory address. You need to explicitly assign the address of a variable to a pointer. To do this, you can use the address-of operator `&`:
 
 ```cpp
 int number = 42;
@@ -27,6 +26,38 @@ int* int_ptr = &number;
 
 std::cout << "Value of number: " << *int_ptr << std::endl;
 ```
+
+We can assign values to the memory at the address of the pointer the same way:
+
+```cpp
+int number = 42;
+int* int_ptr = &number;
+
+*int_ptr = 101;
+
+std::cout << "Value of number: " << *int_ptr << std::endl;
+```
+
+What is the output of the previous code?
+
+---
+
+```
+101
+```
+
+We can take a look at the memory addresses themselves as well:
+
+```cpp
+int number = 42;
+int* int_ptr = &number;
+
+std::cout << "Value of number: " << *int_ptr << std::endl;
+std::cout << "Value of int_ptr: " << int_ptr << std::endl;
+std::cout << "Address of number: " << &number << std::endl;
+```
+
+Here the value of `int_ptr` and the address of `number` should be the same? What are they in your program?
 
 ### nullptr
 
@@ -50,9 +81,11 @@ Go ahead and run this. What is the output?
 
 ---
 
-If we do not initialize `int_ptr` with a valid address, it will be initialized to whatever 8 bytes are on the stack at the location where memory was allocated for `int_ptr`. In the best case, these 8 bytes form an address that we don't have permission to access, and our program crashes, likely with a **segmentation fault**. In the worst case, these 8 bytes somehow form an address to memory that our program is using, such as another variable, and silently corrupts that data.
+If we do not initialize `int_ptr` with a valid address, it will be initialized to whatever 8 bytes are in memory at the location where `int_ptr` was declared. What happens then when we dereference the memory at this address and do something with it?
 
-You should always intialize a pointer with a valid address. But in the event that you can't, initialize the pointer with `nullptr` instead:
+In the best case, these 8 bytes form an address that we don't have permission to access, and our program crashes, likely with a **segmentation fault**. In the worst case, these 8 bytes somehow form an address to memory that our program is using, such as another variable, and silently corrupts that data.
+
+If you need to use a pointer, you should always take care to intialize it with a valid address. In the event that you can't, initialize the pointer with `nullptr` instead:
 
 ```cpp
 #include <iostream>
@@ -95,25 +128,10 @@ int main() {
 
 Here we check for a `nullptr` inside `assignFortyTwo()`, and if we find one we log an error message and return early.
 
-### Pointer Arithmetic
-Pointer arithmetic allows you to navigate through memory addresses by adding or subtracting the number of elements from a pointer. For example, if you have a pointer to an integer, adding 1 to the pointer will make it point to the memory address of the next integer in memory:
-
-```cpp
-int numbers[] = {1, 2, 3};
-int* int_ptr = numbers;
-
-std::cout << *int_ptr << std::endl;
-
-int_ptr++;
-
-std::cout << *int_ptr << std::endl;
-```
-
 ## References
-A reference is an alias for another variable. It allows you to create a new name for an existing variable, and any changes made to the reference will also affect the original variable. References are declared using the `&` symbol after the data type.
+A reference is an alias for another variable. It allows you to create a new name for an existing variable, and any changes made to the reference will also affect the original variable.
 
-### Declaration and Initialization
-To declare a reference, you need to specify the data type of the variable it refers to, followed by the `&` symbol and the reference's name. Unlike pointers, references must be initialized when they are declared.
+To declare a reference, you need to specify the data type of the variable it refers to, followed by the `&` symbol and the reference's name. Unlike pointers, references *must* be initialized when they are declared:
 
 ```cpp
 int number = 42;
@@ -130,6 +148,14 @@ int& number_ref = number;
 number_ref = 100;
 
 std::cout << "Value of number: " << number << std::endl;
+```
+
+What is the output of this previous code?
+
+---
+
+```
+Value of number: 100
 ```
 
 ## References vs. Pointers
@@ -372,7 +398,7 @@ Consider the following code:
 ```cpp
 #include <iostream>
 
-int global_var = 3;
+constexpr int global_var = 3;
 
 int& complex_function(int*& a, int*& b, int& c) {
     int* temp = a;
