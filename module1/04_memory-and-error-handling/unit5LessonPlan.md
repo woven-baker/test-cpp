@@ -1,19 +1,17 @@
 # Lesson Plan: Unit 5
 
 ## Review (60m, 9:30 - 10:30)
-- Preprocessor
 - Header Files
+- Namespaces
 - Scope
 - Duration
 - Linkage
-- Namespaces
-- Using
 
-## Memory and Addresses (60m, 10:30 - 11:30)
+## References and Pointers (60m, 10:30 - 11:30)
 - Instructor-led concepts and exercises (25m)
 - Learner-led exercises (35m)
 
-## References and Pointers (60m, 11:30 - 12:30)
+## Memory and Addresses (60m, 11:30 - 12:30)
 - Instructor-led concepts and exercises (25m)
 - Learner-led exercises (35m)
 
