@@ -81,9 +81,9 @@ Go ahead and run this. What is the output?
 
 ---
 
-If we do not initialize `int_ptr` with a valid address, it will be initialized to whatever 8 bytes are in memory at the location where `int_ptr` was declared. What happens then when we dereference the memory at this address and do something with it?
+If we do not initialize `int_ptr` with a valid address, it will be initialized to whatever value is in memory at the location where `int_ptr` was declared. What happens then when we dereference the memory at this address and do something with it?
 
-In the best case, these 8 bytes form an address that we don't have permission to access, and our program crashes, likely with a **segmentation fault**. In the worst case, these 8 bytes somehow form an address to memory that our program is using, such as another variable, and silently corrupts that data.
+In the best case, the value that is there forms an address that we don't have permission to access, and our program crashes, likely with a **segmentation fault**. In the worst case, the value forms an address to memory that our program is using, such as another variable, and silently corrupts that data.
 
 If you need to use a pointer, you should always take care to intialize it with a valid address. In the event that you can't, initialize the pointer with `nullptr` instead:
 
@@ -158,34 +158,46 @@ What is the output of this previous code?
 Value of number: 100
 ```
 
-## References vs. Pointers
-While both references and pointers allow you to access the memory address of another variable, there are some key differences between the two:
-
-- References must be initialized when they are declared, whereas pointers can be uninitialized.
-- References cannot be reassigned to another variable, while pointers can.
-- You don't need to dereference a reference to access the value it refers to, but you need to dereference a pointer.
-- References cannot be `nullptr`, while pointers can.
-
-In general, use references when you want to create an alias for a variable and don't need to change the alias to another variable later on. Use pointers when you need more flexibility, such as the ability to reassign the pointer or to use pointer arithmetic.
-
-## Passing by Reference vs. Passing by Pointer
-When passing arguments to a function, you can choose between passing by reference or passing by pointer. Both methods allow the function to modify the original variable *by passing the address of the original variable*. However, there are some differences in syntax and usage.
-
-### Passing by Reference
-To pass an argument by reference, you need to declare the function parameter as a reference. When you call the function, you can pass the variable directly:
+## Passing by Reference
+There are several ways you could pass a value to a function, but we will typically want to do it in one of the following three ways:
 
 ```cpp
-void increment(int& num) {
-    num++;
+void passByValue(int a) { a = 5; }
+void passByReference(int& a) { a = 5; }
+void passByConstReference(const std::string& a) { std::cout << a << std::endl; }
+```
+
+When you want the function to take a copy of the parameter, pass by value:
+
+```cpp
+void passByValue(int a) { a = 5; }
+```
+
+Here the integer that gets passed to `passByValue` gets copied into the integer variable `a` that is local to this function.
+
+When you want the function to modify the parameter, pass by reference:
+
+```cpp
+void passByReference(int& a) { a = 5; }
+```
+
+Let's use the previous code and replace the pointer with a reference to illustrate how to pass by reference:
+
+```cpp
+#include <iostream>
+
+void assignFortyTwo(int& num) {
+    num = 42;
 }
 
 int main() {
-    int number = 42;
-    increment(number);
-    std::cout << "Value of number: " << number << std::endl;
-    return 0;
+    int num = 10;
+    assignFortyTwo(num);
+    std::cout << "Value of num: " << num << std::endl;
 }
 ```
+
+Notice that when you call a function that takes a value by reference, you can pass the variable directly in the call. It will get turned into a reference automatically.
 
 What is the output of the previous code:
 
@@ -195,34 +207,11 @@ What is the output of the previous code:
 Value of number: 43
 ```
 
-### Passing by Pointer
-To pass an argument by pointer, you need to declare the function parameter as a pointer. When you call the function, you need to pass the address of the variable using the address-of operator `&`:
+If you have a parameter that is expensive to copy **and** you don't want the function to be able to modify it, pass by const reference:
 
 ```cpp
-void increment(int* num) {
-    (*num)++;
-}
-
-int main() {
-    int number = 42;
-    increment(&number);
-    std::cout << "Value of number: " << number << std::endl;
-    return 0;
-}
+void passByConstReference(const std::string& a) { std::cout << a << std::endl; }
 ```
-
-What is the output of the previous code:
-
----
-
-```
-Value of number: 43
-```
-
-## Which Method to Choose
-Pass by reference when you want a more straightforward syntax and when you want to ensure that the function always receives a valid reference. Pass by pointer when you want to allow the function to receive a `nullptr` or when you want to use pointer arithmetic.
-
-In general, prefer passing by reference.
 
 ## Parameter Passing Guidelines
 
@@ -259,6 +248,16 @@ Write this instead:
 ```cpp
 long squareNumber(int number);
 ```
+
+## References vs. Pointers
+While both references and pointers allow you to access the memory address of another variable, there are some key differences between the two:
+
+- References must be initialized when they are declared, whereas pointers can be uninitialized.
+- References cannot be reassigned to another variable, while pointers can.
+- You don't need to dereference a reference to access the value it refers to, but you need to dereference a pointer.
+- References cannot be `nullptr`, while pointers can.
+
+In general, use references everywhere that you can. Only when you need to pass a memory address to something and you can't use a reference, use a pointer.
 
 # Exercises
 
