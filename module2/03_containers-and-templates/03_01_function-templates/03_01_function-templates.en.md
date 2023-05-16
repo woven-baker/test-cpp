@@ -57,7 +57,7 @@ If you try and compile this code right now, you will encounter a compiler error 
 The next step is to declare `T` using a template head:
 
 ```cpp
-template<typename T>
+template <typename T>
 T add(T a, T b) {
     return a + b;
 }
@@ -92,7 +92,7 @@ Let's go ahead and define another function template called `multiply` that retur
 ---
 
 ```cpp
-template<typename T>
+template <typename T>
 T multiply(T a, T b) {
     return a * b;
 }
@@ -107,7 +107,7 @@ int main() {
 Thanks to *[template argument deduction](https://en.cppreference.com/w/cpp/language/template_argument_deduction)*, when possible, the compiler can deduce on its own what types we are passing to a template. Because of this, we can often call function templates in the same way you would normal functions:
 
 ```cpp
-template<typename T>
+template <typename T>
 void log(T data) {
     std::cout << "Logging data: " << data << '\n';
 }
@@ -122,7 +122,7 @@ int main() {
 ```
 
 ```cpp
-template<typename T, typename U>
+template <typename T, typename U>
 auto max(T x, U y) {
     return (x > y) ? x : y;
 }
@@ -204,7 +204,7 @@ Write a C++ function template called min that accepts two arguments of the same 
 ---
 
 ```cpp
-template<typename T>
+template <typename T>
 T min(T a, T b) {
     return (a < b) ? a : b;
 }
@@ -223,7 +223,7 @@ Write a function template called swap that swaps the values of two variables of 
 ---
 
 ```cpp
-template<typename T>
+template <typename T>
 void swap(T &a, T &b) {
     T temp = a;
     a = b;
@@ -248,7 +248,7 @@ You have been given the following code:
 #include <iostream>
 #include <vector>
 
-template<typename T>
+template <typename T>
 T sum(const std::vector<T> &data) {
     T result = 0;
     for (const auto &item : data) {
@@ -277,7 +277,7 @@ The code is meant to calculate the sum of elements in a vector using a function 
 The issue with the code is that the sum function template is initialized with T result = 0;, which is only valid for numeric types. We can fix this by initializing result with the default value of the given type T:
 
 ```cpp
-template<typename T>
+template <typename T>
 T sum(const std::vector<T> &data) {
     T result = T();
     for (const auto &item : data) {
@@ -293,7 +293,7 @@ Evaluate the code below and explain if it's a good use case for function templat
 ```cpp
 #include <iostream>
 
-template<typename T>
+template <typename T>
 void print(T data) {
     std::cout << data << std::endl;
 }

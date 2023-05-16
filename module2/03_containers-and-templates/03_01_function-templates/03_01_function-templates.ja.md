@@ -57,7 +57,7 @@ T add(T a, T b) {
 次の手順では、テンプレートヘッドを使用して`T`を宣言します。
 
 ```cpp
-template<typename T>
+template <typename T>
 T add(T a, T b) {
     return a + b;
 }
@@ -92,7 +92,7 @@ Adding strings: HelloWorld
 ---
 
 ```cpp
-template<typename T>
+template <typename T>
 T multiply(T a, T b) {
     return a * b;
 }
@@ -107,7 +107,7 @@ int main() {
 コンパイラは *[テンプレートの実引数推定](https://ja.cppreference.com/w/cpp/language/template_argument_deduction)* の仕組みを利用して(利用可能な場合)、テンプレートに渡されたデータ型を推定できます。このため、一般的には通常の関数と同じように関数テンプレートを呼び出すことができます。
 
 ```cpp
-template<typename T>
+template <typename T>
 void log(T data) {
     std::cout << "Logging data: " << data << '\n';
 }
@@ -122,7 +122,7 @@ int main() {
 ```
 
 ```cpp
-template<typename T, typename U>
+template <typename T, typename U>
 auto max(T x, U y) {
     return (x > y) ? x : y;
 }
@@ -192,54 +192,11 @@ c) add<float, float>(3.0, 4.0)
 d) add(3.0, 4.0f)
 ```
 
----
-
-```
-a) and b)
-```
-
 ## 演習2
 同じ型の2つの引数を受け取り、小さいほうの値を返すC++の関数テンプレート「min」を書いてください。
 
----
-
-```cpp
-template<typename T>
-T min(T a, T b) {
-    return (a < b) ? a : b;
-}
-
-int main() {
-    std::cout << "Minimum of ints: " << min<int>(3, 5) << '\n';
-    std::cout << "Minimum of doubles: " << min<double>(3.5, 1.2) << '\n';
-
-    return 0;
-}
-```
-
 ## 演習3
 同じ型の2つの変数の値を入れ替える関数テンプレート「swap」を書いてください。
-
----
-
-```cpp
-template<typename T>
-void swap(T &a, T &b) {
-    T temp = a;
-    a = b;
-    b = temp;
-}
-
-int main() {
-    int x = 5;
-    int y = 10;
-    std::cout << "Before swap: x = " << x << ", y = " << y << '\n';
-    swap(x, y);
-    std::cout << "After swap: x = " << x << ", y = " << y << '\n';
-
-    return 0;
-}
-```
 
 ## 演習4
 次のコードがあります。
@@ -248,7 +205,7 @@ int main() {
 #include <iostream>
 #include <vector>
 
-template<typename T>
+template <typename T>
 T sum(const std::vector<T> &data) {
     T result = 0;
     for (const auto &item : data) {
@@ -272,28 +229,13 @@ int main() {
 
 このコードは、関数テンプレートを使用してvector内の要素の合計を計算します。コードはそのままコンパイルされますが、コードの実行時にセグメンテーション違反が発生します。問題を特定して修正し、正常に動作するコードにしてください。
 
----
-
-このコードの問題点は、sum関数テンプレートが「T result = 0;」で初期化されていることです。この初期化は数値型の場合にだけ有効です。指定した型Tのデフォルト値でresultを初期化することで修正できます。
-
-```cpp
-template<typename T>
-T sum(const std::vector<T> &data) {
-    T result = T();
-    for (const auto &item : data) {
-        result += item;
-    }
-    return result;
-}
-```
-
 ## 演習5
 次のコードを評価し、関数テンプレートの適切なユースケースかどうか説明してください。適切でない場合は、より適切な代替案を提案してください。
 
 ```cpp
 #include <iostream>
 
-template<typename T>
+template <typename T>
 void print(T data) {
     std::cout << data << std::endl;
 }
@@ -305,10 +247,4 @@ int main() {
 
     return 0;
 }
-```
-
----
-
-```
-このユースケースでは関数テンプレートの使用が適しています。関数テンプレートを使用すると、データ型ごとに別々の関数を作成することなく、さまざまなデータ型で利用可能なprint関数を作成できるからです。DRY原則に沿った手法であり、コードのメンテナンスが容易になります。
 ```

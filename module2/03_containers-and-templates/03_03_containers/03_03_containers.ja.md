@@ -268,6 +268,7 @@ int main() {
 ```
 
 # 演習
+
 ## 演習1
 次のコードの出力はどのようになりますか。
 ```cpp
@@ -294,12 +295,6 @@ B: 50 40 30 20 10
 C: 50 40 30 20
 
 D: Compiler Error
-```
-
----
-
-```
-B
 ```
 
 ## 演習2
@@ -332,46 +327,8 @@ C: -1
 D: Compiler Error
 ```
 
----
-
-```
-A
-```
-
 ## 演習3
 整数型の`std::set`を作成し、このセットに1から10の数字を追加するプログラムを作成します。次に、このセットからすべての偶数を削除し、残りの要素を出力します。
-
----
-
-```cpp
-#include <iostream>
-#include <set>
-
-int main() {
-    std::set<int> numbers;
-
-    for (int i = 1; i <= 10; ++i) {
-        numbers.insert(i);
-    }
-
-    for (int i = 2; i <= 10; i += 2) {
-        numbers.erase(i);
-    }
-
-    for (const auto &num : numbers) {
-        std::cout << num << ' ';
-    }
-    std::cout << '\n';
-
-    return 0;
-}
-```
-
-出力:
-
-```
-1 3 5 7 9
-```
 
 ## 演習4
 整数型の`std::list`を使用する次のコードについて考えてみましょう。出力はどのようになりますか。
@@ -407,50 +364,8 @@ C: 5 4 3 10 2 1
 D: 5 4 10 3 2 1
 ```
 
----
-
-```
-D
-```
-
 ## 演習5
 整数型の`std::deque`を作成し、この両端キューに1から5の数字を追加するプログラムを作成します。次に、この両端キューからすべての奇数を削除し、残りの要素を出力します。
-
----
-
-```cpp
-#include <iostream>
-#include <deque>
-
-int main() {
-    std::deque<int> numbers;
-
-    for (int i = 1; i <= 5; ++i) {
-        numbers.push_front(i);
-    }
-
-    for (auto iter = numbers.begin(); iter != numbers.end();) {
-        if (*iter % 2 != 0) {
-            iter = numbers.erase(iter);
-        } else {
-            ++iter;
-        }
-    }
-
-    for (const auto &num : numbers) {
-        std::cout << num << ' ';
-    }
-    std::cout << '\n';
-
-    return 0;
-}
-```
-
-出力:
-
-```
-4 2
-```
 
 ## 演習6
 学生の名前とテストの点数のリストを管理するプログラムを作成しているとします。学生の名前で点数をすばやく検索したり、点数を更新したりできるようにする必要があります。このユースケースに最も適したコンテナはどれですか。
@@ -465,12 +380,4 @@ C. std::deque
 D. std::set
 
 E. std::map
-```
-
----
-
-```
-E
-
-A std::map container would be most appropriate because it allows for efficient lookup, insertion, and deletion of key-value pairs. In this case, the key would be the student's name, and the value would be the corresponding test score.
 ```
