@@ -31,7 +31,7 @@ bool myBool;
 
 In this case, the variables are declared, but they aren't given a value. The values they hold are indeterminate and using them before assigning a value leads to **undefined behavior**.
 
->We will discuss udefined behavior later in this lesson.
+>We will discuss undefined behavior later in this lesson.
 
 ---
 ### Declaration with initialization
