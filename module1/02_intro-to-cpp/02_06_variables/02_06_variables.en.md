@@ -18,7 +18,8 @@ Here are some of the basic types of variables in C++:
 
 Here are some examples of how to declare and initialize variables of these types:
 
-**Declaration without initialization**
+---
+### Declaration without initialization
 
 ```cpp
 int myInteger;
@@ -32,7 +33,8 @@ In this case, the variables are declared, but they aren't given a value. The val
 
 >We will discuss udefined behavior later in this lesson.
 
-**Declaration with initialization**:
+---
+### Declaration with initialization
 
 ```cpp
 int myInteger = 10;
@@ -44,7 +46,8 @@ bool myBool = true;
 
 Here, the variables are declared and given a value at the same time.
 
-**Uniform initialization (C++11 and later)**:
+---
+### Uniform initialization (C++11 and later)
 
 ```cpp
 int myInteger{10};
@@ -56,7 +59,8 @@ bool myBool{true};
 
 This form of initialization, introduced in C++11, has several advantages, such as preventing narrowing conversions (i.e., conversions that can lead to data loss).
 
-**Declaration first, then initialization**:
+---
+### Declaration first, then initialization
 
 ```cpp
 int myInteger;
@@ -65,7 +69,8 @@ myInteger = 10;
 
 In this case, the variable is declared first and then a value is assigned to it in a separate statement.
 
-**Auto keyword (C++11 and later)**:
+---
+### Auto keyword (C++11 and later)
 
 ```cpp
 auto myInteger = 10;  // The compiler deduces that myInteger is an int
