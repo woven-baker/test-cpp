@@ -24,6 +24,29 @@ C++ is a strongly typed language, meaning that every variable and expression has
 ## Type Conversion
 Although C++ is strongly typed, it does allow for type conversion (this is called: type **casting**), where you can manually change a value from one type to another. There are safe ways to do this, such as `static_cast`, which performs compile-time type checking, but there are also unsafe ways, like `reinterpret_cast`, which can lead to type safety issues if misused.
 
+Let's practice. You can try compiling and executing the following code. What do you think the program will print in the terminal?
+```cpp
+
+#include <iostream>
+
+int main() {
+
+double myDouble = 3.14;
+int myInt;
+
+myInt = static_cast<int>(myDouble);
+
+std::cout << "The number is: " << myInt << std::endl;
+
+return 0
+}
+```
+
+---
+```
+The number is: 3
+```
+
 ---
 ## Implicit Type Conversion
 C++ also allows for implicit type conversion, where the compiler automatically changes one type to another if it thinks it's safe. For example, you can assign an integer to a double variable, and the compiler will automatically convert the integer to a double. However, this can sometimes lead to unexpected results, such as loss of precision or data, so it's important to be aware of when these conversions are happening.
