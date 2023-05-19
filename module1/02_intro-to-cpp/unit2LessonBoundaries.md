@@ -9,7 +9,6 @@
   - Undefined Behavior
   - Naming
 - Type Safety
-  - Casting
 - Comments
 - Standard Input/Output
 - Operations and Operators
