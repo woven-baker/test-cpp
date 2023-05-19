@@ -33,7 +33,7 @@ int main() {
 
     //On the next line, dereference your pointer, and store the value in a new variable.
 
-    //On the next three lines, make a new variable on each line. Each variable must be a different data type.
+    //On the next three lines, declare and initialize a new variable on each line. Each variable must be a different data type.
     //variable #1 here
     //variable #2 here
     //variable #3 here
