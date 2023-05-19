@@ -5,13 +5,13 @@ C++ is a programming language developed in the 1980s. It was built as an extensi
 ## How programming was done before C and C++
 Before C and C++, much programming was done using Assembly and machine code. This meant that if you wanted to make a program for a computer, you had to write the program using the specific Assembly language that the computer's processor used. At the time, several companies were producing their own processors, and in many cases they each used their own version of Assembly. This means that a program written for one computer, would have to be completely re-written for another computer. 
 
-This was a slow, and time-consuming process. Now, companies that manufcture processors have standardized much of the Assembly language that different processors use. However, similar to the 1980s, different types of processors still exist, and they still use different language instructions. Two examples of different processor types that are widely used today are ARM processors (often used in small devices, such as smartphones) and x86 processors (usually used in laptop and desktop computers).
+This was a slow, and time-consuming process. Now, companies that manufacture processors have standardized much of the Assembly language that different processors use. However, similar to the 1980s, different types of processors still exist, and they still use different language instructions. Two examples of different processor types that are widely used today are ARM processors (often used in small devices, such as smartphones) and x86 processors (usually used in laptop and desktop computers).
 
 ---
 
 ## How did C and C++ change everything?
 
-C and C++ are called **high-level languages**. Assembly and machine code is very long, and uses special vocabulary and abbreviations that are difficult to memorize and use. C and C++ code greatly simplified this, and provided a standard set of vocabulary for writing source code. Instead of using a large amount of difficult Assembly vocabulary, you could use a few C or C++ commands. Much easier!
+C and C++ are called **high-level languages**. Assembly and machine code are very long, and uses special vocabulary and abbreviations that are difficult to memorize and use. C and C++ code greatly simplified this, and provided a standard set of vocabulary for writing source code. Instead of using a large amount of difficult Assembly vocabulary, you could use a few C or C++ commands. Much easier!
 
 Let's look at an example. Here is the code for `1 + 1` in x86 Assembly.
 ```asl
