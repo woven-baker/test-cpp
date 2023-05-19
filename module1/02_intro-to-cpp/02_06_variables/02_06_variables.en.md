@@ -16,6 +16,12 @@ Here are some of the basic types of variables in C++:
 ---
 ## Declaring and Initializing variables
 
+In C++, we use the word 'declare' when we talk about creating a variable. When a variable is declared, some space is reserved in computer memory for the variable's value. However, it is important to know that when a variable is declared, it's value is not yet set. In fact, the reserved memory might already have a value stored, maybe from some previous usage.
+
+After a variable is declared, we 'initialize' the variable by giving it a value. This is important, because using variables that have not been initialized can create bugs and errors.
+
+> Don't worry, we can change the value of a variable even after we initialize it. However, if the variable uses the keyword `const`, we cannot change it after initializing. We learn more about `const`, later.
+
 Here are some examples of how to declare and initialize variables of these types:
 
 ---
