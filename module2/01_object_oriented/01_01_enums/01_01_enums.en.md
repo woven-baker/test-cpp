@@ -56,7 +56,7 @@ shirt_color = large;
 
 ## Introducing Enum
 
-Enum, short for "enumerations," are a way to define a type with a set of named integer constants. They provide a way to group related constants together, making it easier to understand and maintain your code. They also help catch the previous errors by restricting the possible values to a predefined set.
+Enum, short for "enumerations," is a user-defined data type with a set of named integer constants. They provide a way to group related constants together, making it easier to understand and maintain your code. They also help catch the previous errors by restricting the possible values to a predefined set.
 
 Let's replace the previous constants with `enum`s:
 
@@ -126,6 +126,8 @@ The problem is that the names within an enumeration exist in the same scope as t
 In addition to this problem, we can still get away with writing nonsensical code, such as the following:
 
 ```cpp
+#include <iostream>
+
 enum Size { small, medium, large };
 
 int add(int a, int b) {
@@ -135,8 +137,37 @@ int add(int a, int b) {
 int main() {
     Size shirt_size{ large };
     int result = add(3, shirt_size);
+    std::cout << result << std::endl;
 }
 ```
+
+If we run this previous code, what output do we get? Why do we get this output?
+
+---
+
+```
+5
+```
+
+Here we can see that `shirt_size` was equal to the value 2. This is because enumeration values are actually integers, and by default they start from 0 and increase by one as we add enumeration values. So this code:
+
+```cpp
+enum Size { small, medium, large };
+```
+
+is equivalent to:
+
+```cpp
+enum Size { small = 0, medium = 1, large = 2 };
+```
+
+We could define this enum with our own underlying values, like so:
+
+```cpp
+enum Size { small = 5, medium = 20, large = 23 };
+```
+
+But it is recommended that you use the default values unless you have a good reason to assign your own custom values.
 
 ## Enum Classes
 
@@ -171,7 +202,7 @@ Enum classes also allow you to specify the underlying integer type for the enum,
 enum class Color : uint8_t { red, green, blue };
 ```
 
-However, it is best to not specify an underlying type and use the default type unless you have a good reason not to, such as to forward declare a struct:
+However, it is best to not specify an underlying type and use the default type unless you have a good reason not to, such as to forward declare an enumeration:
 
 ```cpp
 enum class Color;       // not allowed
@@ -200,7 +231,7 @@ enum class Day {
 
 ## Exercise 2
 
-Declare a variable of type `Day` and assign a value to it.
+Declare a variable of type `Day` and assign the enum class value `wednesday` to it.
 
 ---
 
@@ -248,7 +279,22 @@ void printDay(Day day) {
 
 ## Exercise 4
 
-Test your function with various days of the week.
+Test the `printDay()` function with various days of the week, such as the days of the week representing today, tomorrow, and yesterday:
+
+```cpp
+int main() {
+    // TODO
+    printDay(today);
+
+    // TODO
+    printDay(tomorrow);
+
+    // TODO
+    printDay(yesterday);
+
+    return 0;
+}
+```
 
 ---
 

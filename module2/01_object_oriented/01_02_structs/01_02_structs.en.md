@@ -177,7 +177,7 @@ Declare an `std::array` of `Car` structs and initialize it with some sample data
 #include <array>
 
 int main() {
-  std::array<Car> cars = { Car
+  std::array<Car, 4> cars = { Car
     {"Toyota", "Camry", 2019, "Red"},
     {"Honda", "Civic", 2020, "Blue"},
     {"Ford", "Mustang", 2021, "Black"},

@@ -8,11 +8,14 @@ You could use separate variables and functions for each car and its attributes, 
 
 ## **What is a Class?**
 
-A class is a blueprint for creating objects in object-oriented programming languages like C++. An object is an actual instance of the class that holds the data and functions defined in the class.
+A class is a user-defined type, like a struct, that acts as a blueprint for creating objects. An object is an actual instance of the class that holds the data and functions defined in the class.
 
 Let's create a simple `Car` class to represent cars in our dealership:
 
 ```cpp
+#include <iostream>
+#include <string>
+
 class Car {
 public:
     Car(std::string make, std::string model, int year, double price)
@@ -170,6 +173,8 @@ As long as other code calls `getPrice()`, we are free to change the implementati
 
 ### **Constructor**
 
+A constructor is a function with the same name as the class with no return type. We use its parameters to initialize the class:
+
 ```cpp
 Car(std::string make, std::string model, int year, double price)
         : make(make), model(model), year(year), price(price) {
@@ -179,9 +184,7 @@ Car(std::string make, std::string model, int year, double price)
 }
 ```
 
-A constructor is a function with the same name as the class with no return type. We use its parameters to initialize the class.
-
-The `Car` constructor is called when a new `Car` object is created. It first initializes the corresponding member variables using an initializer list:
+The `Car` constructor is called when a new `Car` object is created. It first initializes the corresponding member variables using an **initializer list**:
 
 ```cpp
 : make(make), model(model), year(year), price(price)
@@ -198,6 +201,86 @@ Then the body of the constructor is executed:
 ```
 
 Here we are doing a check to make sure that the car object is initialized with valid data, and logging an error if it isn’t. Constructor should be used to check for invariants, making sure that the state of the object after construction is valid.
+
+You can define multiple constructors for a class, depending on how you want an object of the class to be able to be created:
+
+```cpp
+class Car {
+public:
+    Car() : make("Toyota"), model("Camry"), year(2020), price(25'000) {}
+
+    Car(std::string make, std::string model, int year, double price) : make(make), model(model), year(year), price(price) {
+        if (price < 0) {
+            std::cerr << "Negative Car Price!" << "\n";
+        }
+    }
+
+    Car(std::string make, std::string model, int year) : Car(make, model, year, 0) {}
+
+    // ...
+};
+```
+
+The first constructor is called a **default constructor** because it can be called with no arguments. We can create an instance of the `Car` class by calling this constructor like so:
+
+```cpp
+int main() {
+    auto car = Car();
+    car.displayInfo();
+}
+```
+
+Or, if we simply declare a variable of type `Car`, the compiler will automatically invoke the default constructor, so the following code is identical:
+
+```cpp
+int main() {
+    Car car;
+    car.displayInfo();
+}
+```
+
+What is the output of this previous code?
+
+---
+
+```
+2020 Toyota Camry - $25000
+```
+
+The second constructor takes four arguments, one for each member variable, allowing someone to have full control over how the entire state of the object is initialized:
+
+```cpp
+int main() {
+    auto car = Car("Toyota", "Camry", 2020, 25'000);
+    car.displayInfo();
+}
+```
+
+The third constructor just takes three arguments, and leaves the price out. We can see here that in the initializer list, instead of initializing the members, we are using **constructor delegation** to call the second constructor. This can be very useful when we don't want to duplicate the constructor body logic across different constructors:
+
+```cpp
+int main() {
+    auto car = Car("Toyota", "Camry", 2020);
+    car.displayInfo();
+
+    car.setPrice(25'000);
+    car.displayInfo();
+}
+```
+
+What is the output of this previous code?
+
+---
+
+```
+2020 Toyota Camry - $0
+Changing price from 0 to 25000
+2020 Toyota Camry - $25000
+```
+
+### Member variables
+
+The `Car` class has four member variables: `make`, `model`, `year`, and `price`. These variables store the state of the object and are initialized in the constructor.
 
 ### **Member functions**
 
@@ -221,18 +304,13 @@ Member functions should be marked as `const` when they are not intended to modif
 1. **Indicate intent**: Marking a member function as `const` communicates to other developers that this function is read-only and doesn't modify the object's state. This makes the code more readable and easier to understand.
 2. **Error prevention**: If a `const` member function tries to modify a member variable, the compiler will generate an error, preventing unintentional changes to the object's state.
 3. **Support for const objects**: `const` member functions can be called on `const` objects, which are read-only instances of the class. If a member function is not marked as `const`, it cannot be called on a `const` object, as it is assumed to potentially modify the object's state.
-4. **Enforce immutability**: By marking all appropriate member functions as `const`, you can design classes that are immutable. Immutable objects can provide better safety and predictability in concurrent and multi-threaded environments, as their state cannot be changed after creation.
-5. **Optimization**: Marking member functions as `const` can enable compiler optimizations. The compiler can make assumptions about the constness of objects and their member functions, which may result in better performance.
+4. **Optimization**: Marking member functions as `const` can enable compiler optimizations. The compiler can make assumptions about the constness of objects and their member functions, which may result in better performance.
 
-In short, always mark member functions const if they don’t modify the state of the object.
+In short, always mark member functions `const` if they don’t modify the state of the object.
 
 ### **this pointer**
 
 In the `setPrice` function, the `this` pointer is used to access the object's `price` member variable. The `this` pointer is an implicit pointer to the object itself, and it's used to differentiate between the parameter `price` and the member variable `price`.
-
-### Member variables
-
-The `Car` class has four member variables: `make`, `model`, `year`, and `price`. These variables store the state of the object and are initialized in the constructor.
 
 ## Interface and Implementation
 We defined the `Car` class above in the same file as `main()`, but it is best to split a class into its interface and its implementation. The interface will go in its own `.hpp` header file, while the implementation will go into its own `.cpp` file and include the corresponding header:
@@ -295,6 +373,8 @@ void Car::printPriceChange(double from, double to) const {
 }
 ```
 
+Notice here how we use the name of the class followed by the `::` scope resolution operator to define `Car`'s member functions outside of the class. This is because these functions exist in the scope of the `Car` class, which you can think of as a namespace called `Car`.
+
 ### **main.cpp**
 ```cpp
 #include "car.hpp"
@@ -345,7 +425,7 @@ private:
 
 ## Exercise 2
 
-Add a default constructor to the `Person` class that initializes the `name` to `"Unknown"` and the `age` to `0`.
+Add a constructor that takes no arguments to the `Person` class that initializes the `name` to `"Unknown"` and the `age` to `0`.
 
 ---
 
