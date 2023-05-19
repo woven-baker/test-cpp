@@ -28,9 +28,11 @@ int main() {
     thisIsAlsoTrue = thisIsTrue;
 
 
-    //On the next line, make a pointer that holds an int value.
+    //On the next line, make a pointer that points to a variable with an int value.
+
 
     //On the next line, dereference your pointer, and store the value in a new variable.
+
 
     //On the next three lines, declare and initialize a new variable on each line. Each variable must be a different data type.
     //variable #1 here
@@ -42,15 +44,23 @@ int main() {
     myArray[] = {1,2,3,4}
     anotherArray[] = {3.5, 1.2, 6.7}
 
+
     //Make your own array on the next line. It should contain at least 5 numbers. The numbers can be any number data type, but they must all be the same data type.
     
+
     //This array should not use `int` because it stores big numbers. What data type is better?
     bigNumbers[] = {500000, 700000, 800000}
+
 
     //Use static_cast to change 'sizeOfCesiumAtom' to an int. Use 'static_cast' on the line after sizeOfCesiumAtom.
     double sizeOfCesiumAtom = 0.267
 
+
     //Make three constant variables. You can use any data type, but each variable must be a different data type.
+    //constant variable #1 here
+    //constant variable #2 here
+    //constant variable #3 here
+
 
     //Optional challenge: use std::cout to print the new variable you made with static_cast, on the next line.
 
