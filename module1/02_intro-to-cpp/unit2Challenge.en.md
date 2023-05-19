@@ -34,13 +34,16 @@ int main() {
     //On the next line, dereference your pointer, and store the value in a new variable.
 
     //On the next three lines, make a new variable on each line. Each variable must be a different data type.
+    //variable #1 here
+    //variable #2 here
+    //variable #3 here
 
 
     //Complete these arrays by giving them the correct data type.
     myArray[] = {1,2,3,4}
     anotherArray[] = {3.5, 1.2, 6.7}
 
-    //Make your own array on the next line. It should contain at least 5 numbers. The numbers can be any number data type.
+    //Make your own array on the next line. It should contain at least 5 numbers. The numbers can be any number data type, but they must all be the same data type.
     
     //This array should not use `int` because it stores big numbers. What data type is better?
     bigNumbers[] = {500000, 700000, 800000}
