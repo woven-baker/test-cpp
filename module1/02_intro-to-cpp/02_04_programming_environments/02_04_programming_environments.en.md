@@ -11,7 +11,7 @@ More complex editors like Sublime Text, Atom, or Visual Studio Code provide feat
 
 An IDE, on the other hand, is a more comprehensive tool that typically includes a text editor, compiler, debugger, and more. Examples of C++ IDEs include Microsoft Visual Studio, and CLion.
 
->Note: 'IDE' is not a standardized term. Some developers may refer to an editor as an IDE, but some developers might not conisder that same editor as a "complete" IDE.
+>Note: 'IDE' is not a standardized term. Some developers may refer to an editor as an IDE, but some developers might not consider that same editor as a "complete" IDE.
 
 
 ## Debugger
