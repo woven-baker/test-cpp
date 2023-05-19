@@ -1,6 +1,6 @@
 # Challenge 1 (Level 3): Implementing Inheritance
 
-Create a base class named Animal with a public member function makeSound() that outputs "Unknown sound." Create a derived class named Dog that inherits from Animal. Override the makeSound() function in the Dog class to output "Woof!" Test the Dog class by creating an object and calling its makeSound() function.
+Create a base class named `Animal` with a public member function `makeSound()` that outputs "Unknown sound." Create a derived class named `Dog` that inherits from `Animal`. Override the `makeSound()` function in the `Dog` class to output "Woof!". Test the `Dog` class by creating an object and calling its `makeSound()` function.
 
 # Challenge 2 (Level 4): Identifying the Correct Inheritance Relationship
 
@@ -44,18 +44,14 @@ private:
 };
 ```
 
-# Challenge 4 (Level 6): Designing a Class Hierarchy with Abstract Classes and Virtual Functions
+# Challenge 4 (Level 6): Implementing a Class Hierarchy with Multiple Inheritance
 
-Design a class hierarchy for geometric shapes. Your hierarchy should include an abstract base class named Shape with a pure virtual function getArea(). Create two derived classes, Rectangle and Triangle, that inherit from the Shape class. Implement the getArea() function in both derived classes to compute the area of the respective shapes. Test your class hierarchy by creating objects of both Rectangle and Triangle and using their getArea() functions to verify correct results.
+Research and implement a class hierarchy using multiple inheritance. Design three classes: `MusicalInstrument`, `ElectronicDevice`, and `Synthesizer`. The `MusicalInstrument` class should have a virtual function `playNote()` that takes an integer representing the note's frequency and outputs the corresponding note. The `ElectronicDevice` class should have a virtual function `turnOn()` that outputs "Device turned on" and a virtual function `turnOff()` that outputs "Device turned off." The `Synthesizer` class should inherit from both `MusicalInstrument` and `ElectronicDevice`, and implement all the required virtual functions. Test the `Synthesizer` class by creating an object, turning it on, playing a note, and turning it off.
 
-# Challenge 5 (Level 6): Implementing a Class Hierarchy with Multiple Inheritance
+# Challenge 5 (Level 6): Customizing Standard Library Containers with Inheritance
 
-Research and implement a class hierarchy using multiple inheritance. Design three classes: MusicalInstrument, ElectronicDevice, and Synthesizer. The MusicalInstrument class should have a virtual function playNote() that takes an integer representing the note's frequency and outputs the corresponding note. The ElectronicDevice class should have a virtual function turnOn() that outputs "Device turned on" and a virtual function turnOff() that outputs "Device turned off." The Synthesizer class should inherit from both MusicalInstrument and ElectronicDevice, and implement all the required virtual functions. Test the Synthesizer class by creating an object, turning it on, playing a note, and turning it off.
+Research and implement a custom container class that inherits from the C++ Standard Library `std::vector` class. Add a new member function called `getMean()` that calculates and returns the mean (average) value of the elements in the container. Assume the container will store integers. Test your custom container by adding a series of integer values, retrieving the mean, and verifying the result.
 
-# Challenge 6 (Level 6): Customizing Standard Library Containers with Inheritance
+# Challenge 6 (Level 6): Designing a Polymorphic Container
 
-Research and implement a custom container class that inherits from the C++ Standard Library std::vector class. Add a new member function called getMean() that calculates and returns the mean (average) value of the elements in the container. Assume the container will store integers. Test your custom container by adding a series of integer values, retrieving the mean, and verifying the result.
-
-# Challenge 7 (Level 6): Designing a Polymorphic Container
-
-Design a polymorphic container that can store pointers to objects of different classes derived from a common base class. Start by creating an abstract base class called Drawable with a pure virtual function draw(). Create two derived classes, Circle and Square, that inherit from Drawable. Implement the draw() function in each derived class to output a simple text representation of the respective shapes. Create a container class called Scene that can store pointers to Drawable objects. The Scene class should have a member function render() that calls the draw() function for each object stored in the container. Test your polymorphic container by adding Circle and Square objects to a Scene and rendering the scene.
+Design a polymorphic container that can store pointers to objects of different classes derived from a common base class. Start by creating an abstract base class called `Drawable` with a pure virtual function `draw()`. Create two derived classes, `Circle` and `Square`, that inherit from `Drawable`. Implement the `draw()` function in each derived class to output a simple text representation of the respective shapes. Create a container class called `Scene` that can store pointers to `Drawable` objects. The `Scene` class should have a member function `render()` that calls the `draw()` function for each object stored in the container. Test your polymorphic container by adding `Circle` and `Square` objects to a `Scene` and rendering the scene.

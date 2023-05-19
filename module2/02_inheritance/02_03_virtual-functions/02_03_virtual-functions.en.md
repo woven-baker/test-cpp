@@ -98,50 +98,44 @@ Additionally, in the examples above, note that `Derived::getName()` is not marke
 
 # Motivational Problems
 
+What does all of this help us with?
+
+Let's consider the following code:
+
 ```cpp
 #include <iostream>
 #include <string>
 #include <string_view>
 
 class Animal {
-protected:
-    std::string m_name {};
-
-    // We're making this constructor protected because
-    // we don't want people creating Animal objects directly,
-    // but we still want derived classes to be able to use it.
-    Animal(std::string_view name)
-        : m_name{ name }
-    {
-    }
-
 public:
     const std::string& getName() const { return m_name; }
     virtual std::string_view speak() const { return "???"; }
+
+protected:
+    Animal(std::string_view name) : m_name{ name } {}
+
+    std::string m_name {};
 };
 
 class Cat: public Animal {
 public:
-    Cat(std::string_view name)
-        : Animal{ name }
-    {
-    }
-
+    Cat(std::string_view name) : Animal{ name } {}
     virtual std::string_view speak() const { return "Meow"; }
 };
 
 class Dog: public Animal {
 public:
-    Dog(std::string_view name)
-        : Animal{ name }
-    {
-    }
-
+    Dog(std::string_view name) : Animal{name} {}
     virtual std::string_view speak() const { return "Woof"; }
 };
 ```
 
+We have a base class `Animal` and two derived classes `Cat` and `Dog`. Notice that `Animal`'s constructor is `protected` to prevent someone from creating an instance of an `Animal` directly -- they must create an instance of one of the derived classes instead.
+
 ## Extensibility
+
+One thing it lets us do is write functions like `report()`:
 
 ```cpp
 void report(const Animal& animal) {
@@ -159,7 +153,35 @@ int main() {
 }
 ```
 
+If we ever want to extend our code to support additional derived classes of `Animal`, we don't need to make any changes to our `report()` function.
+
+Go ahead and create a new derived class `Bird`, then make a new call to `report()`, passing in an instance of `Bird`.
+
+---
+
+```cpp
+class Bird: public Animal {
+public:
+    Bird(std::string_view name) : Animal{ name } {}
+    virtual std::string_view speak() const { return "Gawk"; }
+};
+
+int main() {
+    Cat cat{ "Fred" };
+    Dog dog{ "Garbo" };
+    Bird bird{ "Barry" };
+
+    report(cat);
+    report(dog);
+    report(bird);
+
+    return 0;
+}
+```
+
 ## Containers
+
+Lastly, we can put many instances of different derived classes together into a container or array, allowing us to write more generic code that like the previous example is very easy to extend if we need to:
 
 ```cpp
 int main() {
@@ -171,7 +193,11 @@ int main() {
     Dog pooky{ "Pooky" };
     Dog truffle{ "Truffle" };
 
-    Animal* animals[]{ &fred, &garbo, &misty, &pooky, &truffle, &zeke };
+    Bird zana{ "Zana" };
+    Bird winnie{ "Winnie" };
+    Bird ben{ "Ben" };
+
+    Animal* animals[]{ &fred, &garbo, &misty, &pooky, &truffle, &zeke, &zana, &winnie, &ben };
 
     for (const auto* animal : animals) {
         std::cout << animal->getName() << " says " << animal->speak() << '\n';
