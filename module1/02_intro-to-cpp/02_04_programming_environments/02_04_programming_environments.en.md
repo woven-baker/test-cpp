@@ -22,7 +22,7 @@ A debugger is a tool that helps you find and fix bugs in your code. It allows yo
 As your projects get larger, compiling and linking your code can become more complex. Build systems automate this process. You provide a script or configuration file that describes how to build your project, and the build system takes care of the rest whenever you want to build your project. Examples of build systems include Make, CMake, and Meson.
 
 ## Version Control
-When working on a project (especially in a team), it's important to have a way of managing different versions of your code, keeping track of changes, and enabling collaboration. This is what a Verison Control system does. Git is a widely used Version Control tool, and it integrates well with platforms like GitHub and GitLab for online hosting of code.
+When working on a project (especially in a team), it's important to have a way of managing different versions of your code, keeping track of changes, and enabling collaboration. This is what a Version Control system does. Git is a widely used Version Control tool, and it integrates well with platforms like GitHub and GitLab for online hosting of code.
 
 ## Libraries and Frameworks
 These are collections of pre-written code that you can use to perform common tasks, instead of writing everything by yourself. The C++ Standard Library comes with the language and provides a wide range of features, like containers (e.g., vectors, lists, maps) and algorithms (e.g., sort, find). There are also many third-party libraries and frameworks for things like graphics (e.g., SFML, OpenGL), testing (e.g., Google Test), and more.
