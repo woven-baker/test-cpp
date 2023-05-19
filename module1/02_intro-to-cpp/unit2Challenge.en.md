@@ -3,8 +3,7 @@ In this Challenge, you will practice using fundamental C++ skills and keywords.
 
 ## Requirements
 - Copy and Paste the below code into a new `.cpp` file.
-- The code is full of errors that need to be fixed.
-- Read the comments in the code, and complete the tasks.
+- Read the comments in the code, and follow the instructions complete the tasks.
 - Compile the code and execute it.
 
 If the code compiles and executes without errors, the challenge is complete.
