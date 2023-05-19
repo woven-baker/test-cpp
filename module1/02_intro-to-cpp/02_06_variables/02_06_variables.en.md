@@ -16,7 +16,7 @@ Here are some of the basic types of variables in C++:
 ---
 ## Declaring and Initializing variables
 
-In C++, we use the word 'declare' when we talk about creating a variable. When a variable is declared, some space is reserved in computer memory for the variable's value. However, it is important to know that when a variable is declared, it's value is not yet set. In fact, the reserved memory might already have a value stored, maybe from some previous usage.
+In C++, we use the word 'declare' when we talk about creating a variable. When a variable is declared, some space is reserved in computer memory for the variable's value. However, it is important to know that when a variable is declared, it's value is not yet set. In fact, the reserved memory might already have a value left over from some previous usage.
 
 After a variable is declared, we 'initialize' the variable by giving it a value. This is important, because using variables that have not been initialized can create bugs and errors.
 
@@ -28,19 +28,52 @@ Here are some examples of how to declare and initialize variables of these types
 ### Declaration without initialization
 
 ```cpp
-int myInteger;
-float myFloat;
-double myDouble;
-char myChar;
-bool myBool;
+int main() {
+   int myInteger;
+   float myFloat;
+   double myDouble;
+   char myChar;
+   bool myBool;
+}
 ```
 
-In this case, the variables are declared, but they aren't given a value. The values they hold are indeterminate and using them before assigning a value leads to **undefined behavior**.
+In this case, the variables are declared, but they aren't initialized with any values. The values they hold are indeterminate and using them before assigning a value leads to **undefined behavior**.
 
->We will discuss undefined behavior later in this lesson.
+> We will discuss undefined behavior later in this lesson.
 
 ---
 ### Declaration with initialization
+
+```cpp
+int main() {
+   int myInteger { 10 };
+   float myFloat { 20.5f };
+   double myDouble { 30.15 };
+   char myChar { 'A' };
+   bool myBool { true };
+}
+```
+
+Here, the variables are declared and initialized with a value at the same time.
+
+If we want to initialize these built-in data types with 0, we can use empty braces:
+
+```cpp
+int main() {
+   int myInteger {};
+   float myFloat {};
+   double myDouble {};
+   char myChar {};
+   bool myBool {};
+}
+```
+
+---
+### Uniform initialization (C++11 and later)
+
+This whole time we have been initializing variables with curly braces `{}`. This is called **uniform initialization**.
+
+Before C++11, programmers would just use the assignment operatorr `=`:
 
 ```cpp
 int myInteger = 10;
@@ -50,22 +83,38 @@ char myChar = 'A';
 bool myBool = true;
 ```
 
-Here, the variables are declared and given a value at the same time.
+Uniform initialization has several advantages over using the assignment operator, such as preventing narrowing conversions (i.e., conversions that can lead to data loss).
 
----
-### Uniform initialization (C++11 and later)
+To illustrate this, consider the following code:
 
 ```cpp
-int myInteger{10};
-float myFloat{20.5f};
-double myDouble{30.15};
-char myChar{'A'};
-bool myBool{true};
+#include <iostream>
+
+int main() {
+   int myInteger = 3.14;
+   std::cout << myInteger << std::endl;
+}
 ```
 
-This form of initialization, introduced in C++11, has several advantages, such as preventing narrowing conversions (i.e., conversions that can lead to data loss).
+Go ahead and compile and run this program. The compiler will likely give a warning about the implicit conversion from `double` to `int`, because we are losing the decimal part of 3.14, but it will compile the program and let you run it.
+
+This could very well have been a bug in our program. Either we shouldn't have been initializing `myInteger` to a double value, or we should have declared `myInteger` to be `double` instead of `int`.
+
+Go ahead and compile and run the same program but using uniform initialization:
+
+```cpp
+#include <iostream>
+
+int main() {
+   int myInteger { 3.14 };
+   std::cout << myInteger << std::endl;
+}
+```
+
+Now the compiler gives us an error and prevents the program from compiling. This is usually what we want to have happen. This is type safety!
 
 ---
+
 ### Declaration first, then initialization
 
 ```cpp
@@ -73,14 +122,14 @@ int myInteger;
 myInteger = 10;
 ```
 
-In this case, the variable is declared first and then a value is assigned to it in a separate statement.
+In this case, the variable is declared first and then a value is assigned to it in a separate statement. While it may be fine in this small snippet, what if there's more code in between these two statements, and someone tries to use `myInteger` before it gets initialized? Undefined behavior. Always initialize variables when they are declared, wherever possible.
 
 ---
 ### Auto keyword (C++11 and later)
 
 ```cpp
-auto myInteger = 10;  // The compiler deduces that myInteger is an int
-auto myFloat = 20.5f; // The compiler deduces that myFloat is a float
+auto myInteger { 10 };  // The compiler deduces that myInteger is an int
+auto myFloat { 20.5f }; // The compiler deduces that myFloat is a float
 ```
 
 The `auto` keyword tells the compiler to automatically deduce the type of the variable from its initializer.
@@ -89,10 +138,6 @@ The `auto` keyword tells the compiler to automatically deduce the type of the va
 ## Undefined Behavior
 
 Undefined behavior refers to parts of the C++ standard where the behavior of the program is not prescribed, meaning the compiler has no instructions on what to do in such cases. This can lead to unpredictable results, including crashes and random or incorrect program output. The worst case is when your program seems to produce normal results in most cases, but suddenly in certain situations, it might stop working correctly. These types of problems are extremely hard to find and fix.
-
-Here is an analogy using a real world example: Imagine you send your friend to buy some ice cream for you. The only instruction you give to your friend is: buy ice cream. Your instruction is specific, but doesn't have any details. What flavor should your friend look for? If your friend can't find that flavor, what should he do? How much money should he spend? When your friend arrives at the shop, he will buy the first ice cream flavor that he sees. This is dangerous because it might be a flavor that you hate, or it might be a seasonal flavor that costs a lot of money. In this case, your friend's actions analagous to **undefined behavior** in C++, because you didn't define the subsequent actions he should take. You only defined the first action, "buy ice cream".
-
-Because you can't predict undefined behavior, it is particularly dangerous.
 
 Here are some examples of undefined behavior related to variables in C++:
 
@@ -132,6 +177,4 @@ Here are some examples of undefined behavior related to variables in C++:
    maxValue = maxValue + 1;  // Undefined behavior
    ```
 
->Note: These examples show undefined behavior for variables, but undefined behvaior can affect other things in C++, as well, such as loop statements and arrays.
-
-Remember, undefined behavior can lead to bugs that are extremely difficult to diagnose and fix, because the bugs might not be apparent and they can vary between compilers or even different executions of the program. Sometimes, a program's source code won't have any undefined behavior problems, but using the compiler's optimization options can **create undefined behavior conditions** in the executable file. This is one reason why testing the executable is important, to check the compiler's optimizations.
+Remember, undefined behavior can lead to bugs that are extremely difficult to diagnose and fix. Do your best to understand when undefined behavior can arise and avoid using the language in ways that cause undefined behavior.

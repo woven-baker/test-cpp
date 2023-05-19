@@ -10,9 +10,9 @@ To give you a simple analogy, imagine you speak only English, and you have a fri
 
 In the process of compilation, the C++ compiler also performs various tasks like checking for syntax errors, optimizing the code for better performance, and more. If your C++ code has any errors, the compiler will let you know by generating error messages.
 
-To use a C++ compiler, you typically write your C++ code in a text editor or integrated development environment (IDE), save it with a .cpp file extension, and then use the compiler to compile the .cpp file into an executable program. 
+To use a C++ compiler, you typically write your C++ program in a text editor or integrated development environment (IDE), save it with a .cpp file extension, and then use the compiler to compile the .cpp file into an executable program.
 
->The combination of 1) your compiler, 2) text editor or IDE, and 3) your Operating System and other tools is sometimes collectively called your **environment** or **local environment**.
+> The combination of 1) your compiler, 2) your text editor or IDE, and 3) your operating system and other tools is sometimes collectively called your **environment** or **local environment**.
 
 ## Basic Compiler usage
 
@@ -21,13 +21,10 @@ Let's make something!
 First, you need to write your C++ code. This is a very basic program that prints "Hello, World!" to the console.
 
 ```cpp
-// This is a simple C++ program
+#include<iostream>
 
-#include<iostream> // Include the iostream library
-
-int main() { // This is the main function. Execution of the program starts here.
-  std::cout << "Hello, World!"; // Print "Hello, World!" to the console
-  return 0; // Indicate that the program ended successfully
+int main() {
+  std::cout << "Hello, World!";
 }
 ```
 
@@ -43,7 +40,7 @@ g++ hello_world.cpp -o hello_world
 
 In this command:
 
-- `g++` is the compiler.
+- `g++` is the command to run the compiler.
 - `hello_world.cpp` is the source file (the C++ code you wrote).
 - `-o` is an option that lets you specify the output file's name.
 - `hello_world` is the name of the output file. This is the executable file that will be created by the compiler.
@@ -66,7 +63,7 @@ hello_world.exe
 
 When you run this program, it will print "Hello, World!" to the console. This is the output of your program.
 
->The machine code file that the compiler produces is called a **binary**, **executable file** or just **executable**. Be careful, different developers might use different names!.
+> The machine code file that the compiler produces is called a **binary**, **executable file** or just **executable**. Be careful, different developers might use different names!
 
 **Let's review:**
 What is the purpose of the `-o` option when using the compiler?
@@ -84,19 +81,17 @@ The answer is:
 B.
 ```
 
----
-
 ## What else does the compiler do?
 
-Compilers not only translate code from C++ to machine code, but they also perform optimization to make the code run faster or use fewer resources like memory and power.
+Compilers not only translate code from C++ to machine code, but they also perform optimizations to make the code run faster or use fewer resources like memory and power.
 
 Optimization is a complex process and involves several different techniques. Here are just a few examples:
 
-1. **Constant folding**: If the compiler sees an expression involving constants, it calculates the result at compile time instead of at run time. For example, the compiler will replace `int x = 2 * 3` with `int x = 6`.
+1. **Constant folding**: If the compiler sees an expression involving constants, it can calculate the result at compile time instead of this same computation taking up resources at run time. For example, the compiler will replace `int x = 2 * 3` with `int x = 6`.
 
-2. **Dead code elimination**: The compiler removes code that doesn't affect the program's output. For example, if there's a variable that's never used, the compiler might remove that code.
+2. **Dead code elimination**: The compiler removes code that doesn't affect the program's output. For example, if there's a variable that's never used, the compiler might remove that code, making the final binary smaller.
 
-3. **Loop unrolling**: This is a technique that attempts to minimize the memory overhead of loop control structures by replicating the loop's body. This reduces the number of iterations and can improve performance, but at the cost of increasing the size of the binary.
+3. **Loop unrolling**: This is a technique that attempts to minimize the memory overhead of loop control structures by replicating the loop's body. This reduces the number of jumps to different code the processor needs to make and can improve performance, but at the cost of increasing the size of the binary.
 
 4. **Function inlining**: This replaces a function call with the function's code to save the overhead of a function call. But, like loop unrolling, this can increase the binary size.
 

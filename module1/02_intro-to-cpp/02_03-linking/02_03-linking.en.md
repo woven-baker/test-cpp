@@ -11,7 +11,7 @@ Let's explain this in a bit more detail:
 
 The linker's job involves resolving references between files. Sometimes, your program source code might be separated into multiple files. Code you write in one file, can be used in any of the other files. The linker will try to find the best way to combine code, so you don't need copies of code in several places of your executable. We will learn more about this, later.
 
-Linking isn't just for **your** code; it also involves linking to libraries. Libraries are collections of pre-compiled code that you can reuse in your programs. For example, the `std::cout` object that you use to print to the console in a C++ program is defined in the C++ Standard Library. When you use `std::cout` in your program, the linker adds the necessary code from the Standard Library into your executable.
+Linking isn't just for **your** code; it also involves linking to libraries. Libraries are collections of pre-compiled code that you can reuse in your programs. For example, the `std::cout` object that you use to print to the console in a C++ program is defined in the C++ Standard Library. When you use `std::cout` in your program, the linker links the necessary code from the Standard Library into your executable.
 
 Linking can be either static or dynamic:
 

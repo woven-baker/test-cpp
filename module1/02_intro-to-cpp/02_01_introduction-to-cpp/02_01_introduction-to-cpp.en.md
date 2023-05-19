@@ -50,15 +50,10 @@ Here is the C++ code for `1 + 1`:
 
 ```cpp
 #include <iostream>
-#include <unistd.h> // for the write() function
 
 int main() {
-    int result = 1 + 1; // Add 1 to 1 and store the result
-    
-    // Write the result to standard output
-    write(1, &result, sizeof(result));
-    
-    return 0;
+    int result = 1 + 1;
+    std::cout << result;
 }
 ```
 Do you think the C++ code is shorter and easier to read?
@@ -78,17 +73,19 @@ The compiler allowed C and C++ code to become very portable. The only requiremen
 
 C++ is used in almost every industry. 
 
-- Robotics: C++ is used to control sensors, motors, and more.
-- Computer Hardware: C++ is used to write Drivers, that allow different devices (such as keyboards or headphones) to connect to computers.
-- Systems Programming: C++ is used to make Operating Systems and the tools they need.
-- GUI programming: the graphical elements used in many OS, such as icons, menus, and windows.
-- Application Programming: word processors, music applications, art and graphics applications.
-- Video Games and CGI: computer graphics software and video game design software are usually made in C++
-- Machine Learning: Although the Python programming language is famous for Machine Learning, those ML libraries are usually written in C or C++. The user only accesses those features by using Python!
+- **Robotics**: C++ is used to control sensors, motors, and more.
+- **Computer Hardware**: C++ is used to write Drivers, that allow different devices (such as keyboards or headphones) to connect to computers.
+- **Systems Programming**: C++ is used to make Operating Systems and the tools they need.
+- **GUI programming**: the graphical elements used in many OS, such as icons, menus, and windows.
+- **Application Programming**: word processors, music applications, art and graphics applications.
+- **Video Games and CGI**: computer graphics software and video game design software are usually made in C++
+- **Machine Learning**: Although the Python programming language is famous for Machine Learning, those ML libraries are usually written in C or C++. The user only accesses those features by using Python!
 - ...and more!
 
 ## Are C and C++ different?
 
-In this Module, you will learn all about C++. It is important to know that C++ and C share many features. In fact, sometimes C++ and C code can be used together. However, because C++ has many extra features, sometimes C++ code **cannot** be interchanged with C code. 
+C++ and C do share many features, and C++ can be thought of as a superset of C. C++ adds support for object-oriented programming, better type checking, and a host of other extremely useful features and abstractions.
 
-This won't be a problem in this Module, but situations like this might occur in your job, or anywhere else you use C++. 
+Sometimes C++ and C code can be used together. You could write code that can be compiled with a C++ compiler but that is written in the style of C code, but this is not recommended. It is important to remember that **C++ is its own language**. It has its own guidelines and idioms and best-practices. C++ has many features that aim to make software development more safe, more maintainable, and more productive than development with C.
+
+Because of these extra features, often times C++ code **cannot** directly be interchanged with C code. This won't be a problem in this module, but situations like this might occur in your job and in embedded development where you are working with existing code or existing libraries. Don't worry, we will learn more about this in the next module.
