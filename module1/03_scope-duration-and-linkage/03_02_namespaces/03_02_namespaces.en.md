@@ -99,7 +99,7 @@ The linker, when it goes to combine the `.o` object files for all three source f
 
 This is called a *naming collision*, or a *naming conflict*.
 
-We could rename our functions and our variable so that they do not collide, which would be easy enough for a small program like this, but that would be annoying. However, for much larger projects, the odds of collisions increase significantly, and we can't be expected to constantly rename things in our code just to avoid these collisions.
+We could rename our functions and our variable so that they do not collide, which would be possible for a small program like this. However, for much larger projects, the odds of collisions increase significantly, especially with several people collaborating on a project together, often times never understanding the whole program in its entirety. In this scenario we can't be expected to constantly rename things in our code just to avoid these collisions. It would not be possible.
 
 We can use namespaces to solve this problem.
 
@@ -235,6 +235,8 @@ int main() {
     turnOn();
 }
 ```
+
+This is exactly why `using namespace std;` in the global scope is not a good practice. It pollutes the global namespace with all of the names of all of the functions and constants in the `std` namespace, and you could very likely run into naming collisions like we saw previously with `led` and `motor`.
 
 # Exercises
 
