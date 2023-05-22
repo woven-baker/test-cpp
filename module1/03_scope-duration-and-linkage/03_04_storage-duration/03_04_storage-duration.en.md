@@ -10,22 +10,120 @@ Let's explore them one by one.
 ## Automatic Storage Duration
 Variables with automatic storage duration are created at the point of definition and destroyed when the control flow leaves the scope in which they are defined. The most common examples are local variables and function parameters.
 
+Let's consider the following code:
+
 ```cpp
-void myFunction(int x) {
-    int y { 5 + x };
-    std::cout << y << std::endl;
+#include <iostream>
+
+void myFunction() {
+    int staticLocalVar { 1 };
+    ++staticLocalVar;
+    std::cout << staticLocalVar << std::endl;
 }
 
 int main() {
-    int a;
-    myFunction(a);
+    int a { 1 };
+    std::cout << a << std::endl;
+
+    myFunction();
+    myFunction();
+    myFunction();
+    myFunction();
+    myFunction();
 }
 ```
 
-In this example, both `x` and `y` are created when `myFunction()` is called and destroyed when `myFunction()` ends. Similarly `a` is created when `main()` is called and destroyed when `main()` ends.
+In this example, `staticLocalVar` is created when `myFunction()` is called and destroyed when `myFunction()` ends. Similarly `a` is created when `main()` is called and destroyed when `main()` ends.
+
+What is the expected output from this program?
+
+---
+
+```
+1
+2
+2
+2
+2
+2
+```
 
 ## Static Storage Duration
-Variables with static storage duration are created when the program starts and destroyed when the program ends. They are initialized only once, and they are zero-initialized by default. These include global variables, static local variables, and static data members of classes. 
+In contrast to variables with automatic storage duration, variables with static storage duration are created when the program starts and destroyed when the program ends. These include global variables, static local variables, and static data members of classes. 
+
+Let's take the previous program and simply add the `static` keyword before our declaration of `staticLocalVar`:
+
+```cpp
+#include <iostream>
+
+void myFunction() {
+    static int staticLocalVar { 1 };
+    ++staticLocalVar;
+    std::cout << staticLocalVar << std::endl;
+}
+
+int main() {
+    int a { 1 };
+    std::cout << a << std::endl;
+
+    myFunction();
+    myFunction();
+    myFunction();
+    myFunction();
+    myFunction();
+}
+```
+
+In this example, because of the `static` keyword, `staticLocalVar` is created only once and it lasts until the end of the program. 
+
+Knowing that, can you predict what the output of this new code will be?
+
+---
+
+The output is:
+
+```
+1
+2
+3
+4
+5
+6
+```
+
+Because static variables have storage duration until program termination, `staticLocalVar` retains its value between calls to `myFunction()`.
+
+One use-case for a static local variable would be a unique ID generator:
+
+```cpp
+#include <iostream>
+
+int generateID() {
+    static int id { 0 };
+    return id++;
+}
+
+int main() {
+    std::cout << generateID() << std::endl;
+    std::cout << generateID() << std::endl;
+    std::cout << generateID() << std::endl;
+    std::cout << generateID() << std::endl;
+}
+```
+
+What is the output of this program?
+
+---
+
+```
+0
+1
+2
+3
+```
+
+### Zero-initialized
+Additionally, variables with static storage duration are initialized only once, and they are zero-initialized by default.
 
 ```cpp
 #include <iostream>
@@ -52,35 +150,22 @@ What is the output of this program?
 0
 ```
 
-In this example, `globalVar` and `staticLocalVar` are created only once and they last until the end of the program. Because static variables have storage duration until program termination, `staticLocalVar` retains its value between calls to `myFunction()`.
-
-Given that, what is the output of the following program:
+Despite this fact, it is still best to initialize variables explicitly. If your intention is to initialize these variables to zero, don't just rely on the compiler to do this for you:
 
 ```cpp
 #include <iostream>
 
+constexpr int globalVar { 0 };
+
 void myFunction() {
-    static int staticLocalVar;
-    std::cout << staticLocalVar++ << std::endl;
+    static int staticLocalVar { 0 };
+    std::cout << staticLocalVar << std::endl;
 }
 
 int main() {
-    myFunction();
-    myFunction();
-    myFunction();
-    myFunction();
+    std::cout << globalVar << std::endl;
     myFunction();
 }
-```
-
----
-
-```
-0
-1
-2
-3
-4
 ```
 
 ## Dynamic Storage Duration
@@ -96,7 +181,7 @@ int main() {
 }
 ```
 
-In the above example, dynamicVar is a pointer to an integer allocated on the heap. The integer it points to has dynamic storage duration and exists until delete dynamicVar is executed.
+In the above example, dynamicVar is a pointer to an integer allocated on the heap. The integer it points to has dynamic storage duration and exists until delete dynamicVar is executed. We will learn more about what's going on here later.
 
 # Exercises
 
