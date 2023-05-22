@@ -175,13 +175,13 @@ Dynamic storage duration applies to variables that are allocated and deallocated
 #include <iostream>
 
 int main() {
-    int* dynamicVar = new int(5);
-    std::cout << *dynamicVar << std::endl;
+    auto dynamicVar = new int(5);
+    // ...
     delete dynamicVar;
 }
 ```
 
-In the above example, dynamicVar is a pointer to an integer allocated on the heap. The integer it points to has dynamic storage duration and exists until delete dynamicVar is executed. We will learn more about what's going on here later.
+In the above example, we use `new` to dynamically allocate memory for an integer named `dynamicVar`. `dynamicVar` has dynamic storage duration and exists until it is explicitly deleted when the line `delete dynamicVar;` is executed. Don't worry too much about this now, we will learn more about what's going on here later.
 
 # Exercises
 
@@ -196,7 +196,7 @@ constexpr int a { 10 };
 void myFunction() {
     static int b { 20 };
     int c { 30 };
-    int* d = new int(40);
+    auto d = new int(40);
 }
 
 int main() {
@@ -214,12 +214,34 @@ D) d
 ---
 
 ```
-D) d
+C) c
 ```
 
-`localVar` is the only variable with automatic storage duration in this example. It's created when `myFunction()` is called and destroyed when `myFunction()` ends.
+`c` is the only variable with automatic storage duration in this example. It's created when `myFunction()` is called and destroyed when `myFunction()` ends.
 
 ## Exercise 2
+What is the storage duration of the variable `a` in the following program?
+
+```cpp
+int main() {
+    auto a = new int;
+    return 0;
+}
+```
+
+```
+A) Automatic
+B) Static
+C) Dynamic
+```
+
+---
+
+```
+D) Dynamic
+```
+
+## Exercise 3
 What will the following code print?
 
 ```cpp
@@ -252,27 +274,3 @@ C) 1 2 3
 ```
 
 The variable `count` in `myFunction()` is a static local variable. It's created and initialized only once, and retains its value between calls to `myFunction()`. So it gets incremented each time `myFunction()` is called.
-
-## Exercise 3
-What is the storage duration of the variable `a` in the following program?
-
-```cpp
-int main() {
-    int* a = new int;
-    return 0;
-}
-```
-
-```
-A) Automatic
-B) Static
-C) Dynamic
-```
-
----
-
-```
-D) Dynamic
-```
-
-The variable `a` is a pointer to an integer allocated on the heap using `new`. This integer has dynamic storage duration, and exists until it's explicitly deallocated. Please note that in the above example, we didn't deallocate the memory, which leads to a memory leak. To avoid it, `delete a;` should be called before the program ends.
