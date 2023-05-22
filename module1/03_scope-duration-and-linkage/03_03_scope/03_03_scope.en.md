@@ -74,10 +74,15 @@ Why?
 ```cpp
 #include <iostream>
 
-int mode;
+namespace constants {
+    constexpr int stop { 1 };
+    constexpr int go { 2 };
+}
+
+int mode { constants::stop };
 
 void someFunction() {
-    mode = 2;
+    mode = constants::go;
 }
 
 void actionBreak() {
@@ -89,11 +94,11 @@ void actionAccelerate() {
 }
 
 int main() {
-    mode = 1;
+    mode = constants::stop;
 
     someFunction();
 
-    if (mode == 1) {
+    if (mode == constants::stop) {
         actionBreak();
     } else {
         actionAccelerate();
@@ -101,9 +106,55 @@ int main() {
 }
 ```
 
-A programmer reading `main()` should reasonably expect `actionBreak()` to be called, since `mode` was assigned the value 1 just a few lines beforehand. However, `mode` is reassigned the value 2 in `someFunction()`. There is no obvious connection between `someFunction()` and `mode`. We would expect mode to be passed to the function by reference if it were to modify `mode`. Instead, it happens silently. 
+A programmer reading `main()` should reasonably expect `actionBreak()` to be called, since `mode` was assigned the value `stop` just a few lines beforehand. However, `mode` is reassigned the value `go` in `someFunction()`. There is no obvious connection between `someFunction()` and `mode`. It happens silently.
 
-In a large program, with hundreds of functions and thousands of lines of code, imagine trying to track down a bug involving a global variable that appears in 40 different functions.
+In a large program, with hundreds of functions and thousands of lines of code, imagine trying to track down a bug involving a non-const global variable that appears in 40 different functions.
+
+In this previous code, we cannot fix this simply by making `mode` a constant, since we need to be able to assign to it.
+
+How can we rewrite this code to avoid using global variables?
+
+---
+
+We use functions to explicitly pass the data around to whatever needs it:
+
+```cpp
+#include <iostream>
+
+namespace constants {
+    constexpr int stop { 1 };
+    constexpr int go { 2 };
+}
+
+int someFunction(int mode) {
+    mode = constants::go;
+    return mode;
+}
+
+void actionBreak() {
+    // ...
+}
+
+void actionAccelerate() {
+    // ...
+}
+
+int main() {
+    int mode { constants::stop };
+
+    mode = someFunction(mode);
+
+    if (mode == constants::stop) {
+        actionBreak();
+    } else {
+        actionAccelerate();
+    }
+}
+```
+
+This code is much clearer. We can clearly see that `someFunction()` uses `mode` and also reassigns it with its return value. Similarly, since `mode` is no longer a global, we can also see that neither `actionBreak()` nor `actionAccelerate()` will modify it.
+
+In short, avoid using non-const globals.
 
 ## Shadowing
 
@@ -112,10 +163,10 @@ Consider the following program:
 ```cpp
 #include <iostream>
 
-int num = 20;
+constexpr int num { 20 };
 
 void printNum() {
-    int num = 10;
+    int num { 10 };
     std::cout << "Local num: " << num << std::endl;
 }
 
